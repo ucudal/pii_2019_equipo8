@@ -1,0 +1,141 @@
+[
+  {
+    "name": "User",
+    "superclasses": "",
+    "subclasses": "Admin, Worker, Client",
+    "type": 2,
+    "responsibilities": [
+      "Sign in",
+      "Sign out"
+    ],
+    "collaborators": [
+      "Create"
+    ]
+  },
+  {
+    "name": "Admin",
+    "superclasses": "User",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Conocer lista de Workers",
+      "Conocer lista de roles",
+      "Habilitar o deshabilitar a los usuarios",
+      "Devolverle al cliente una lista de trabajadores por el rol especificado"
+    ],
+    "collaborators": [
+      "Client",
+      "Worker",
+      "Role",
+      "Sort"
+    ]
+  },
+  {
+    "name": "Worker",
+    "superclasses": "User",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Conocer el rol del Worker",
+      "Conocer feedback "
+    ],
+    "collaborators": [
+      "Role",
+      "Feedback",
+      "Contract"
+    ]
+  },
+  {
+    "name": "Client",
+    "superclasses": "User",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Escribir Feedback",
+      "Conocer Contract",
+      "Crear Contract",
+      ""
+    ],
+    "collaborators": [
+      "Admin",
+      "Contract"
+    ]
+  },
+  {
+    "name": "Contract",
+    "superclasses": "",
+    "subclasses": "ContractByHour, ContactByDay",
+    "type": 2,
+    "responsibilities": [
+      "Conoce Worker",
+      "Conoce Client"
+    ],
+    "collaborators": [
+      "Client",
+      "Worker"
+    ]
+  },
+  {
+    "name": "Sort",
+    "superclasses": "",
+    "subclasses": "SortByRole, SortByRanking, SortByWorkedHours",
+    "type": 2,
+    "responsibilities": [
+      "Conoce Worker",
+      "Conoce Role",
+      "Devuelve al Admin una lista de DtContrato"
+    ],
+    "collaborators": [
+      ""
+    ]
+  },
+  {
+    "name": "SortByRole",
+    "superclasses": "Sort",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Ordena los Workers por Rol"
+    ],
+    "collaborators": [
+      "Role"
+    ]
+  },
+  {
+    "name": "Role",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Conoce los Workers",
+      "Devolver una lista de trabajdores al Sort"
+    ],
+    "collaborators": [
+      ""
+    ]
+  },
+  {
+    "name": "Feedback",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Conoce al Client"
+    ],
+    "collaborators": [
+      "Client"
+    ]
+  },
+  {
+    "name": "Create",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Crea un User"
+    ],
+    "collaborators": [
+      "Users"
+    ]
+  }
+]
