@@ -1,0 +1,200 @@
+[
+  {
+    "name": "User",
+    "superclasses": "",
+    "subclasses": "Admin, Worker, Client",
+    "type": 2,
+    "responsibilities": [
+      "Sign out"
+    ],
+    "collaborators": [
+      ""
+    ]
+  },
+  {
+    "name": "Admin",
+    "superclasses": "User",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Conocer lista de Workers",
+      "Habilitar o deshabilitar a los usuarios",
+      "Devolverle al cliente una lista de trabajadores por el rol especificado"
+    ],
+    "collaborators": [
+      "Client",
+      "Worker",
+      "Sort"
+    ]
+  },
+  {
+    "name": "Worker",
+    "superclasses": "User",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Conocer los roles del Worker",
+      "Conocer feedbacks",
+      "Crear un set de dtContrato"
+    ],
+    "collaborators": [
+      "Role",
+      "Feedback"
+    ]
+  },
+  {
+    "name": "Client",
+    "superclasses": "User",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Escribir Feedback",
+      "Conocer Contract",
+      "Crear Contract",
+      "Conocer el Admin"
+    ],
+    "collaborators": [
+      "Admin",
+      "Contract"
+    ]
+  },
+  {
+    "name": "Contract",
+    "superclasses": "",
+    "subclasses": "ContractByHour, ContactByDay",
+    "type": 2,
+    "responsibilities": [
+      "Conoce Worker",
+      "Conoce Client"
+    ],
+    "collaborators": [
+      "Client",
+      "Worker"
+    ]
+  },
+  {
+    "name": "Sort",
+    "superclasses": "",
+    "subclasses": "SortByRole, SortByRanking, SortByWorkedHours",
+    "type": 2,
+    "responsibilities": [
+      "Conoce Worker",
+      "Conoce Role",
+      "Devuelve al Admin una lista de DtContrato"
+    ],
+    "collaborators": [
+      ""
+    ]
+  },
+  {
+    "name": "SortByRole",
+    "superclasses": "Sort",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Ordena los Workers por Role"
+    ],
+    "collaborators": [
+      "Role"
+    ]
+  },
+  {
+    "name": "Role",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Conoce los Workers",
+      "Devolver una lista de dtcontrato al Sort"
+    ],
+    "collaborators": [
+      "Worker"
+    ]
+  },
+  {
+    "name": "Feedback",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Conoce al Client"
+    ],
+    "collaborators": [
+      "Client"
+    ]
+  },
+  {
+    "name": "Create",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Crea un User"
+    ],
+    "collaborators": [
+      "User"
+    ]
+  },
+  {
+    "name": "Login",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Sign in"
+    ],
+    "collaborators": [
+      "User"
+    ]
+  },
+  {
+    "name": "SortByRanking",
+    "superclasses": "Sort",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Ordena workers por ranking"
+    ],
+    "collaborators": [
+      "Worker"
+    ]
+  },
+  {
+    "name": "SortByWorkedHours",
+    "superclasses": "Sort",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "ordena Worker por WorkedHours"
+    ],
+    "collaborators": [
+      "Worker"
+    ]
+  },
+  {
+    "name": "ContractByHour",
+    "superclasses": "Contract",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      ""
+    ],
+    "collaborators": [
+      "Client",
+      "Worker"
+    ]
+  },
+  {
+    "name": "ContactByDay",
+    "superclasses": "Contract",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      ""
+    ],
+    "collaborators": [
+      "Worker ",
+      "Client"
+    ]
+  }
+]
