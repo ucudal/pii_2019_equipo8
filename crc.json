@@ -1,0 +1,297 @@
+Fork me on GitHub
+CRC Card Maker
+Tip: The header/buttons are hidden when printing!
+
+New cardRemove allShare linkExport
+Export JSON
+[
+  {
+    "name": "User",
+    "superclasses": "",
+    "subclasses": "Admin, Worker, Client",
+    "type": 2,
+    "responsibilities": [
+      "Sign out"
+    ],
+    "collaborators": [
+      ""
+    ]
+  },
+  {
+    "name": "Admin",
+    "superclasses": "User",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Conocer lista de Workers",
+      "Habilitar o deshabilitar a los usuarios",
+      "Devolverle al cliente una lista de trabajadores por el rol especificado"
+    ],
+    "collaborators": [
+      "Client",
+      "Worker",
+      "Sort"
+    ]
+  },
+  {
+    "name": "Worker",
+    "superclasses": "User",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Conocer los roles del Worker",
+      "Conocer feedbacks",
+      "Crear un set de dtContrato"
+    ],
+    "collaborators": [
+      "Role",
+      "Feedback"
+    ]
+  },
+  {
+    "name": "Client",
+    "superclasses": "User",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Escribir Feedback",
+      "Conocer Contract",
+      "Crear Contract",
+      "Conocer el Admin"
+    ],
+    "collaborators": [
+      "Admin",
+      "Contract"
+    ]
+  },
+  {
+    "name": "Contract",
+    "superclasses": "",
+    "subclasses": "ContractByHour, ContactByDay",
+    "type": 2,
+    "responsibilities": [
+      "Conoce Worker",
+      "Conoce Client"
+    ],
+    "collaborators": [
+      "Client",
+      "Worker"
+    ]
+  },
+  {
+    "name": "Sort",
+    "superclasses": "",
+    "subclasses": "SortByRole, SortByRanking, SortByWorkedHours",
+    "type": 2,
+    "responsibilities": [
+      "Conoce Worker",
+      "Conoce Role",
+      "Devuelve al Admin una lista de DtContrato"
+    ],
+    "collaborators": [
+      ""
+    ]
+  },
+  {
+    "name": "SortByRole",
+    "superclasses": "Sort",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Ordena los Workers por Role"
+    ],
+    "collaborators": [
+      "Role"
+    ]
+  },
+  {
+    "name": "Role",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Conoce los Workers",
+      "Devolver una lista de dtcontrato al Sort"
+    ],
+    "collaborators": [
+      "Worker"
+    ]
+  },
+  {
+    "name": "Feedback",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Conoce al Client"
+    ],
+    "collaborators": [
+      "Client"
+    ]
+  },
+  {
+    "name": "Create",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Crea un User"
+    ],
+    "collaborators": [
+      "User"
+    ]
+  },
+  {
+    "name": "Login",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Sign in"
+    ],
+    "collaborators": [
+      "User"
+    ]
+  },
+  {
+    "name": "SortByRanking",
+    "superclasses": "Sort",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Ordena workers por ranking"
+    ],
+    "collaborators": [
+      "Worker"
+    ]
+  },
+  {
+    "name": "SortByWorkedHours",
+    "superclasses": "Sort",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "ordena Worker por WorkedHours"
+    ],
+    "collaborators": [
+      "Worker"
+    ]
+  },
+  {
+    "name": "ContractByHour",
+    "superclasses": "Contract",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      ""
+    ],
+    "collaborators": [
+      "Client",
+      "Worker"
+    ]
+  },
+  {
+    "name": "ContactByDay",
+    "superclasses": "Contract",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      ""
+    ],
+    "collaborators": [
+      "Worker ",
+      "Client"
+    ]
+  }
+]
+CopyClose
+Print
+Show/hide controls
+Abstract
+User
+Admin, Worker, Client
+Sign out
+Edit card #1✕↓
+User
+Admin
+Conocer lista de Workers
+Habilitar o deshabilitar a los usuarios
+Devolverle al cliente una lista de trabajadores por el rol especificado
+Client
+Worker
+Sort
+Edit card #2✕↑↓
+User
+Worker
+Conocer los roles del Worker
+Conocer feedbacks
+Crear un set de dtContrato
+Role
+Feedback
+Edit card #3✕↑↓
+User
+Client
+Escribir Feedback
+Conocer Contract
+Crear Contract
+Conocer el Admin
+Admin
+Contract
+Edit card #4✕↑↓
+Abstract
+Contract
+ContractByHour, ContactByDay
+Conoce Worker
+Conoce Client
+Client
+Worker
+Edit card #5✕↑↓
+Abstract
+Sort
+SortByRole, SortByRanking, SortByWorkedHours
+Conoce Worker
+Conoce Role
+Devuelve al Admin una lista de DtContrato
+Edit card #6✕↑↓
+Sort
+SortByRole
+Ordena los Workers por Role
+Role
+Edit card #7✕↑↓
+Role
+Conoce los Workers
+Devolver una lista de dtcontrato al Sort
+Worker
+Edit card #8✕↑↓
+Feedback
+Conoce al Client
+Client
+Edit card #9✕↑↓
+Create
+Crea un User
+User
+Edit card #10✕↑↓
+Login
+Sign in
+User
+Edit card #11✕↑↓
+Sort
+SortByRanking
+Ordena workers por ranking
+Worker
+Edit card #12✕↑↓
+Sort
+SortByWorkedHours
+ordena Worker por WorkedHours
+Worker
+Edit card #13✕↑↓
+Contract
+ContractByHour
+Client
+Worker
+Edit card #14✕↑↓
+Contract
+ContactByDay
+Worker
+Client
+Edit card #15✕↑
