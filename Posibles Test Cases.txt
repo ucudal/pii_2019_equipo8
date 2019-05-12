@@ -1,4 +1,0 @@
-crear mas de 1 admin
-crear user con mismo mail
-mandar mas de 1 feedback
-habilitar/deshabilitar un usario que ya estaba habilitado/deshabilitado
