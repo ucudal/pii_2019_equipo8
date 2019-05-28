@@ -10,7 +10,6 @@ namespace AppProyecto.Models
         public List<Client> Clientlist;
         public List<String> Consults = new List<String>();
         public Admin (string Name, string Mail, string Password, List<Worker> Workerlist)
-        : base (Name, Mail, Password)
         {
             this.Name = Name;
             this.Mail = Mail;
@@ -43,7 +42,7 @@ namespace AppProyecto.Models
         public List<Worker> SortWorkers(ISort sort)
         {
             return sort.SortWorker(this.Workerlist);
-        } 
+        }  
 
     }
 }
