@@ -6,7 +6,6 @@ namespace AppProyecto.Models
     {
         public int Projects;
         public Client (string Name, string Mail, string Password) 
-        : base (Name, Mail, Password)
         {
             
         }

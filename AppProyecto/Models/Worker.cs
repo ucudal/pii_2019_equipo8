@@ -11,7 +11,6 @@ namespace AppProyecto.Models
         public int WorkedHours;
         public int TotalWorks;
         public Worker (string Name, string Mail, string Password, List<Role> Rolelist) 
-        : base (Name, Mail, Password)
         {
             this.Name = Name;
             this.Mail = Mail;

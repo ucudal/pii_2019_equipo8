@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using AppProyecto.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AppProyecto
 {
@@ -30,7 +32,8 @@ namespace AppProyecto
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
+        services.AddDbContext<RazorPagesUserContext>(options =>
+        options.UseSqlite(Configuration.GetConnectionString("UserContext")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
