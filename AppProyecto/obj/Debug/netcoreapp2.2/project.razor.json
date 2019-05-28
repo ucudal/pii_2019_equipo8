@@ -1,5 +1,5 @@
 {
-  "FilePath": "c:\\Users\\estudiante.fit\\Documents\\GitHub\\pii_2019_equipo8\\AppProyecto\\AppProyecto.csproj",
+  "FilePath": "c:\\Users\\FIT\\Documents\\GitHub\\pii_2019_equipo8\\AppProyecto\\AppProyecto.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-2.1",
     "LanguageVersion": "2.1",
@@ -2759,6 +2759,11 @@
   "RootNamespace": "AppProyecto",
   "Documents": [
     {
+      "FilePath": "Pages\\Admin\\Details.cshtml",
+      "TargetPath": "Pages\\Admin\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "Pages\\Index.cshtml",
       "TargetPath": "Pages\\Index.cshtml",
       "FileKind": "mvc"
@@ -2771,6 +2776,26 @@
     {
       "FilePath": "Pages\\_ViewImports.cshtml",
       "TargetPath": "Pages\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Pages\\Admin\\Index.cshtml",
+      "TargetPath": "Pages\\Admin\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Pages\\Admin\\Create.cshtml",
+      "TargetPath": "Pages\\Admin\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Pages\\Admin\\Edit.cshtml",
+      "TargetPath": "Pages\\Admin\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Pages\\Admin\\Delete.cshtml",
+      "TargetPath": "Pages\\Admin\\Delete.cshtml",
       "FileKind": "mvc"
     },
     {
