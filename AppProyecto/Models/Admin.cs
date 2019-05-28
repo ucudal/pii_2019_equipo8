@@ -5,7 +5,7 @@ namespace AppProyecto.Models
 {
     public class Admin : User
     {
-        private readonly List<Worker> Workerlist;
+        public List<Worker> Workerlist;
         public List<User> DisableUsersList;
         public List<Client> Clientlist;
         public List<String> Consults = new List<String>();
@@ -18,12 +18,14 @@ namespace AppProyecto.Models
             this.Workerlist = Workerlist;
             this.Disable = false;
         }
+        public override void AddToAdmin(Admin admin){}
         public void ActivateUser (User user)
         {
             if (this.DisableUsersList.Contains(user))
             {
                 user.Disable = false;
                 this.DisableUsersList.Remove(user);
+                user.AddToAdmin(this);
             }
         }
         public void DisableUser (User user)
@@ -41,7 +43,7 @@ namespace AppProyecto.Models
         public List<Worker> SortWorkers(ISort sort)
         {
             return sort.SortWorker(this.Workerlist);
-        }  
+        } 
 
     }
 }

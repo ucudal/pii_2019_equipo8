@@ -17,6 +17,10 @@ namespace AppProyecto.Models
             this.Mail = Mail;
             this.Password = Password;
             this.Rolelist = Rolelist;
+        }
+        public override void AddToAdmin(Admin admin)
+        {
+            admin.Workerlist.Add(this);
         } 
     }
 }

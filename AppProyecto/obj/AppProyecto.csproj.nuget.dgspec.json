@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\AppProyecto\\AppProyecto.csproj": {}
+    "C:\\Users\\estudiante.fit\\Documents\\GitHub\\pii_2019_equipo8\\AppProyecto\\AppProyecto.csproj": {}
   },
   "projects": {
-    "C:\\AppProyecto\\AppProyecto.csproj": {
+    "C:\\Users\\estudiante.fit\\Documents\\GitHub\\pii_2019_equipo8\\AppProyecto\\AppProyecto.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\AppProyecto\\AppProyecto.csproj",
+        "projectUniqueName": "C:\\Users\\estudiante.fit\\Documents\\GitHub\\pii_2019_equipo8\\AppProyecto\\AppProyecto.csproj",
         "projectName": "AppProyecto",
-        "projectPath": "C:\\AppProyecto\\AppProyecto.csproj",
+        "projectPath": "C:\\Users\\estudiante.fit\\Documents\\GitHub\\pii_2019_equipo8\\AppProyecto\\AppProyecto.csproj",
         "packagesPath": "C:\\Users\\estudiante.fit\\.nuget\\packages\\",
-        "outputPath": "C:\\AppProyecto\\obj\\",
+        "outputPath": "C:\\Users\\estudiante.fit\\Documents\\GitHub\\pii_2019_equipo8\\AppProyecto\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

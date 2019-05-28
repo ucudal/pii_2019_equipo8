@@ -10,9 +10,17 @@ namespace AppProyecto.Models
         {
             
         }
-        public string Consult(string consult)
+        public override void AddToAdmin(Admin admin)
         {
-            return consult;
+            admin.Clientlist.Add(this);
+        }
+        public void Consult(string consult, Admin admin)
+        {
+            admin.AddConsults(consult);
+        }
+        public void CreateProject(Worker worker)
+        {
+
         }
     }
 }
