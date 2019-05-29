@@ -7671,6 +7671,7 @@
       "path": "runtime.native.system.io.compression/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.0/_._",
@@ -10822,6 +10823,7 @@
       "path": "system.runtime.serialization.primitives/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -11148,6 +11150,7 @@
       "path": "system.security.cryptography.csp/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -11219,6 +11222,7 @@
       "path": "system.security.cryptography.openssl/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.6/System.Security.Cryptography.OpenSsl.dll",
@@ -12420,11 +12424,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\FIT\\Documents\\GitHub\\pii_2019_equipo8\\AppProyecto\\AppProyecto.csproj",
+      "projectUniqueName": "c:\\AppProyecto\\AppProyecto.csproj",
       "projectName": "AppProyecto",
-      "projectPath": "c:\\Users\\FIT\\Documents\\GitHub\\pii_2019_equipo8\\AppProyecto\\AppProyecto.csproj",
+      "projectPath": "c:\\AppProyecto\\AppProyecto.csproj",
       "packagesPath": "C:\\Users\\FIT\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\FIT\\Documents\\GitHub\\pii_2019_equipo8\\AppProyecto\\obj\\",
+      "outputPath": "c:\\AppProyecto\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -15,6 +15,22 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="User.ID" />
             <div class="form-group">
+                <label asp-for="User.Name" class="control-label"></label>
+                <input asp-for="User.Name" class="form-control" />
+                <span asp-validation-for="User.Name" class="text-danger"></span>
+            <div>
+            <div class="form-group">
+                <label asp-for="User.Mail" class="control-label"></label>
+                <input asp-for="User.Mail" class="form-control" />
+                <span asp-validation-for="User.Mail" class="text-danger"></span>
+            <div>
+             <div class="form-group">
+                <label asp-for="User.Disable" class="control-label"></label>
+                <input asp-for="User.Disable" class="form-control" />
+                <span asp-validation-for="User.Disable" class="text-danger"></span>
+            <div>
+                
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
@@ -28,3 +44,4 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
