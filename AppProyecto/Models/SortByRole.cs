@@ -11,7 +11,7 @@ namespace AppProyecto.Models
             List<Worker> result = new List<Worker>();
             foreach (Worker worker in Workerlist)
             {
-                if (worker.Rolelist.Contains(this.role))
+                if (worker.RoleList.Contains(this.role))
                 {
                     result.Add(worker);
                 }

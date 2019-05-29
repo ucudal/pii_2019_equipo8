@@ -24,7 +24,7 @@ namespace AppProyecto.Pages.Admin
         }
 
         [BindProperty]
-        public User User { get; set; }
+        public new User User { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
