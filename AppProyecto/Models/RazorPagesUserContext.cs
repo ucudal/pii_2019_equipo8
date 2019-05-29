@@ -12,3 +12,4 @@ namespace AppProyecto.Models
         public DbSet<AppProyecto.Models.User> User { get; set; }
     }
 }
+

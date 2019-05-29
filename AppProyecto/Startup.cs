@@ -35,6 +35,9 @@ namespace AppProyecto
         services.AddDbContext<RazorPagesUserContext>(options =>
         options.UseSqlite(Configuration.GetConnectionString("UserContext")));
 
+
+
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
