@@ -20,8 +20,7 @@ namespace AppProyecto
 
                 try
                 {
-                    var context=services.
-                        GetRequiredService<RazorPagesUserContext>();
+                    var context=services.GetRequiredService<RazorPagesUserContext>();
                     context.Database.Migrate();
                     SeedData.Initialize(services);
                 }
@@ -30,6 +29,19 @@ namespace AppProyecto
                     var logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogError(ex, "An error occurred seeding the DB.");
                 }
+                try
+                {
+                    var context1=services.GetRequiredService<RazorPagesRoleContext>();
+                    context1.Database.Migrate();
+                    SeedRole.Initialize(services);
+                }
+                catch(Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred seeding the DB.");
+                }
+
+
             }
 
             host.Run();
