@@ -14,6 +14,8 @@ namespace AppProyecto.Models
                 serviceProvider.GetRequiredService<
                     DbContextOptions<RazorPagesUserContext>>()))
             {
+				
+			
                 // Look for any movies.
                 if (context.User.Any())
                 {
