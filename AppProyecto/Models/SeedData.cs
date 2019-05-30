@@ -21,11 +21,11 @@ namespace AppProyecto.Models
                 {
                     return;   // DB has been seeded
                 }
-                List<Role> roles = new List<Role>();
-                    roles.Add(new Role("Sonidista"));
-                    roles.Add(new Role("Fotografo"));
-                    List<Role> roles1 = new List<Role>();
-                    roles1.Add(new Role("Diseñador"));
+                // List<Role> roles = new List<Role>();
+                //     roles.Add(new Role("Sonidista"));
+                //     roles.Add(new Role("Fotografo"));
+                //     List<Role> roles1 = new List<Role>();
+                //     roles1.Add(new Role("Diseñador"));
                 context.User.AddRange(
 
 
@@ -54,7 +54,7 @@ namespace AppProyecto.Models
                         Mail = "prueba2@gmail.com",
                         Password = "contraseña",
                         Disable = true,
-                         RoleList = roles,
+                        //  RoleList = roles,
                         Available = true,
                         WorkedHours = 0,
                         TotalWorks = 0,
@@ -67,7 +67,7 @@ namespace AppProyecto.Models
                         Mail = "prueba3@gmail.com",
                         Password = "contraseña",
                         Disable = true,
-                        RoleList = roles1,
+                        // RoleList = roles1,
                         Available = true,
                         WorkedHours = 0,
                         TotalWorks = 0,
