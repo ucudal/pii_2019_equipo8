@@ -11,9 +11,9 @@ namespace AppProyecto.Pages.Role
 {
     public class DeleteModel : PageModel
     {
-        private readonly AppProyecto.Models.RazorPagesRoleContext _context;
+        private readonly AppProyecto.Models.RazorPagesUserContext _context;
 
-        public DeleteModel(AppProyecto.Models.RazorPagesRoleContext context)
+        public DeleteModel(AppProyecto.Models.RazorPagesUserContext context)
         {
             _context = context;
         }

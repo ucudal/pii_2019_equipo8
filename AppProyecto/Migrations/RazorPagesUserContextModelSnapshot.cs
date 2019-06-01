@@ -15,6 +15,18 @@ namespace AppProyecto.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
 
+            modelBuilder.Entity("AppProyecto.Models.Role", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Role");
+                });
+
             modelBuilder.Entity("AppProyecto.Models.User", b =>
                 {
                     b.Property<int>("ID")

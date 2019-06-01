@@ -6,6 +6,6 @@ namespace AppProyecto.Models
     public class Contract
     {
         
-        } 
+
     }
 }

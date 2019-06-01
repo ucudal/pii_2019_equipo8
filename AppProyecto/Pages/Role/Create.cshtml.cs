@@ -11,9 +11,9 @@ namespace AppProyecto.Pages.Role
 {
     public class CreateModel : PageModel
     {
-        private readonly AppProyecto.Models.RazorPagesRoleContext _context;
+        private readonly AppProyecto.Models.RazorPagesUserContext _context;
 
-        public CreateModel(AppProyecto.Models.RazorPagesRoleContext context)
+        public CreateModel(AppProyecto.Models.RazorPagesUserContext context)
         {
             _context = context;
         }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppProyecto.Migrations
 {
     [DbContext(typeof(RazorPagesUserContext))]
-    [Migration("20190529174529_InitialCreate")]
+    [Migration("20190601223027_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -16,6 +16,18 @@ namespace AppProyecto.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
+
+            modelBuilder.Entity("AppProyecto.Models.Role", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Role");
+                });
 
             modelBuilder.Entity("AppProyecto.Models.User", b =>
                 {

@@ -11,9 +11,9 @@ namespace AppProyecto.Pages.Role
 {
     public class DetailsModel : PageModel
     {
-        private readonly AppProyecto.Models.RazorPagesRoleContext _context;
+        private readonly AppProyecto.Models.RazorPagesUserContext _context;
 
-        public DetailsModel(AppProyecto.Models.RazorPagesRoleContext context)
+        public DetailsModel(AppProyecto.Models.RazorPagesUserContext context)
         {
             _context = context;
         }
