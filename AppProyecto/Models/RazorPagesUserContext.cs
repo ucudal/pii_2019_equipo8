@@ -10,6 +10,7 @@ namespace AppProyecto.Models
         }
 
         public DbSet<AppProyecto.Models.User> User { get; set; }
+        public DbSet<AppProyecto.Models.Role> Role {get; set;}
     }
 }
 

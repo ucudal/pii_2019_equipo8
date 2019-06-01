@@ -11,9 +11,9 @@ namespace AppProyecto.Pages.Role
 {
     public class IndexModel : PageModel
     {
-        private readonly AppProyecto.Models.RazorPagesRoleContext _context;
+        private readonly AppProyecto.Models.RazorPagesUserContext _context;
 
-        public IndexModel(AppProyecto.Models.RazorPagesRoleContext context)
+        public IndexModel(AppProyecto.Models.RazorPagesUserContext context)
         {
             _context = context;
         }

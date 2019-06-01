@@ -10,9 +10,9 @@ namespace AppProyecto.Models
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var context = new RazorPagesRoleContext(
+            using (var context = new RazorPagesUserContext(
                 serviceProvider.GetRequiredService<
-                    DbContextOptions<RazorPagesRoleContext>>()))
+                    DbContextOptions<RazorPagesUserContext>>()))
             {
 				
 			

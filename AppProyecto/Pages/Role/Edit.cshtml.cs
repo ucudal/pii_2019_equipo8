@@ -12,9 +12,9 @@ namespace AppProyecto.Pages.Role
 {
     public class EditModel : PageModel
     {
-        private readonly AppProyecto.Models.RazorPagesRoleContext _context;
+        private readonly AppProyecto.Models.RazorPagesUserContext _context;
 
-        public EditModel(AppProyecto.Models.RazorPagesRoleContext context)
+        public EditModel(AppProyecto.Models.RazorPagesUserContext context)
         {
             _context = context;
         }
