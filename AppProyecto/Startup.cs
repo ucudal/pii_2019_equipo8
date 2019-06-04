@@ -35,7 +35,7 @@ namespace AppProyecto
         services.AddDbContext<RazorPagesUserContext>(options =>
         options.UseSqlite(Configuration.GetConnectionString("UserContext")));
 
-        services.AddDbContext<RazorPagesRoleContext>(options =>
+        services.AddDbContext<RazorPagesUserContext>(options =>
         options.UseSqlite(Configuration.GetConnectionString("RoleContext")));
 
 
