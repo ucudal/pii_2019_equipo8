@@ -31,7 +31,7 @@ namespace AppProyecto
                 }
                 try
                 {
-                    var context1=services.GetRequiredService<RazorPagesRoleContext>();
+                    var context1=services.GetRequiredService<RazorPagesUserContext>();
                     context1.Database.Migrate();
                     SeedRole.Initialize(services);
                 }
