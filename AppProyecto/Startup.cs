@@ -9,10 +9,13 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using AppProyecto.Models;
+using RazorPagesMovie.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Authorization;
+using RazorPagesMovie.Areas.Identity.Data;
 
-namespace AppProyecto
+namespace RazorPagesMovie
 {
     public class Startup
     {
@@ -32,15 +35,30 @@ namespace AppProyecto
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-        services.AddDbContext<RazorPagesUserContext>(options =>
-        options.UseSqlite(Configuration.GetConnectionString("UserContext")));
 
-        services.AddDbContext<RazorPagesUserContext>(options =>
-        options.UseSqlite(Configuration.GetConnectionString("RoleContext")));
+            services.AddDbContext<RazorPagesMovieContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("MovieContext")));
 
+            // Fix error More than one DbContext named 'RazorPagesMovieIdentityDbContext' was found Specify which one to use by providing
+            // its fully qualified name using exact case when running dotnet aspnet-codegenerator razorpage -m ApplicationUser
+            // -dc RazorPagesMovie.Areas.Identity.Data.RazorPagesMovieIdentityDbContext -udl -outDir Areas\Identity\Pages\ApplicationUsers
+            // --referenceScriptLibraries
+            services.AddDbContext<IdentityContext>(options =>
+                 options.UseSqlite(Configuration.GetConnectionString("MovieContext")));
 
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(config =>
+            {
+                // Requiere que haya usuarios logueados
+                var policy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            })
+                .AddRazorPagesOptions(options =>
+                {
+                    options.Conventions.AllowAnonymousToPage("/Privacy");
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +78,7 @@ namespace AppProyecto
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseAuthentication();
 
             app.UseMvc();
         }
