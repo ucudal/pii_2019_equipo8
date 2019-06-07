@@ -2,11 +2,12 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using AppProyecto.Models;
+using RazorPagesMovie.Models;
 using System;
 using Microsoft.EntityFrameworkCore;
+using RazorPagesMovie.Areas.Identity.Data;
 
-namespace AppProyecto
+namespace RazorPagesMovie
 {
     public class Program
     {
@@ -20,28 +21,17 @@ namespace AppProyecto
 
                 try
                 {
-                    var context=services.GetRequiredService<RazorPagesUserContext>();
+                    var context=services.
+                        GetRequiredService<RazorPagesMovieContext>();
                     context.Database.Migrate();
                     SeedData.Initialize(services);
+                    SeedIdentityData.Initialize(services);
                 }
                 catch (Exception ex)
                 {
                     var logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogError(ex, "An error occurred seeding the DB.");
                 }
-                try
-                {
-                    var context1=services.GetRequiredService<RazorPagesUserContext>();
-                    context1.Database.Migrate();
-                    SeedRole.Initialize(services);
-                }
-                catch(Exception ex)
-                {
-                    var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred seeding the DB.");
-                }
-
-
             }
 
             host.Run();
