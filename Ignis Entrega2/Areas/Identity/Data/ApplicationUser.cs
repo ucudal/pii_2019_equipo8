@@ -11,6 +11,8 @@ namespace Ignis.Areas.Identity.Data
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser
     {
+         [Key]
+        public override string Id {get;set;}
         [PersonalData]
         public string Name { get; set; }
 
@@ -36,8 +38,8 @@ namespace Ignis.Areas.Identity.Data
             this.Role = role;
         }
          public virtual List<String> ShowProperties()
-        {
-            return new List<String>();
-        }
+         {
+             return new List<String>();
+         }
     }
 }

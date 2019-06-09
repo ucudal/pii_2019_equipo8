@@ -14,14 +14,13 @@ namespace Ignis.Areas.Identity.Pages.Users
     public class ProfileModel : PageModel
     {
         private readonly Ignis.Areas.Identity.Data.IdentityContext _context;
-
         public ProfileModel(Ignis.Areas.Identity.Data.IdentityContext context)
         {
             _context = context;
         }
         public List<String> Properties {get; set;}
 
-        public ApplicationUser ApplicationUser { get;set; }
+        public ApplicationUser ApplicationUser{get;set;}
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -29,8 +28,8 @@ namespace Ignis.Areas.Identity.Pages.Users
             {
                 return NotFound();
             }
-
             ApplicationUser = await _context.Users.FirstOrDefaultAsync(m => m.Id == id);
+            
             
             Properties = ApplicationUser.ShowProperties();
 

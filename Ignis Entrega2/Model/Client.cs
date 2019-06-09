@@ -7,7 +7,6 @@ namespace Ignis.Areas.Identity.Data
 {
     public class Client : Ignis.Areas.Identity.Data.ApplicationUser
     {
-        
         public int Projects{get;set;}
         
         public override List<String> ShowProperties()

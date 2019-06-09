@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +13,12 @@ namespace Ignis.Areas.Identity.Data
         public bool Available{get; set;}
         public int WorkedHours{get; set;}
         public int TotalWorks{get; set;}
-        public int? RoleID { get; set; }
+        //public List<Ignis.Models.WorkersWithRole> WorkersWithRoles { get; set; }
+
         //public ICollection<Ignis.Models.WorkerRoleAssignment> WorkerRoleAssignments { get; set; }
         public override List<String> ShowProperties()
         {
-            List<String> result = new List<String>();
+        List<String> result = new List<String>();
              
         result.Add(this.Name.ToString());
         result.Add(this.AverageRanking.ToString());

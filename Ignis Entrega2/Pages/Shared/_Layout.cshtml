@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Movie</title>
+    <title>@ViewData["Title"] - Ignis</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -30,20 +30,19 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Movies/Index">Movies</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Actors/Index">Actors</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
+                        
                             @if (User.IsInRole(IdentityData.AdminRoleName))
                             {
-                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Users/Index">Users</a>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Users/Index">Users</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/VerRoles/Index">Roles</a>
+                                </li>
                             }
-                        </li>
+                        
                         <partial name="_LoginPartial" />
                     </ul>
                 </div>
@@ -59,7 +58,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2019 - RazorPagesMovie - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2019 - IgnisProyecto - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
 

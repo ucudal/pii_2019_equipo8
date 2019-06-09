@@ -34,13 +34,6 @@
                 <input asp-for="ApplicationUser.Email" class="form-control" />
                 <span asp-validation-for="ApplicationUser.Email" class="text-danger"></span>
             <div class="form-group">
-                <label asp-for="Role" class="control-label">Role:</label>
-                @{
-                List<SelectListItem> listItems = new List<SelectListItem>(Model.RolesList);
-                }
-                @Html.DropDownListFor(model => model.Role, listItems, "-- Select Role --", new { @class = "form-control" })
-            </div>
-            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

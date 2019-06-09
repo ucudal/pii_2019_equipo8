@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Ignis.Models;
+using Ignis.Areas.Identity.Data;
 
 namespace Ignis.Models
 {
@@ -9,19 +10,14 @@ namespace Ignis.Models
             : base(options)
         {
         }
-
-        public DbSet<Ignis.Models.Movie> Movie { get; set; }
-
-        public DbSet<Ignis.Models.Actor> Actor { get; set; }
-
-        public DbSet<Appereance> Appereances { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Appereance>().ToTable("Appereance")
-                 .HasKey(a => new { a.ActorID, a.MovieID });
         }
+        public DbSet<Ignis.Models.RoleWorker> RoleWorker { get; set; }
+        
+       
+
     }
 }
