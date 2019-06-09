@@ -11,6 +11,8 @@ namespace Ignis.Areas.Identity.Data
     /// <summary>
     /// Inicializa en la base de datos de identidad los usuarios y roles necesarios para el funcionamiento de la aplicación
     /// la primera vez que se ejecuta.
+    /// Un uso conveniente de esta clase es guardar los datos del Admin, por lo tanto esta clase le manda un mensaje a 
+    /// IdentityData que es la clase que contiene la información del Admin.
     /// </summary>
     public static class SeedIdentityData
     {

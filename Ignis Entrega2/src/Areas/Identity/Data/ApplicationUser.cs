@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+//ApplicationUser es la clase de los usuarios por lo tanto es sucesora de IdentityUser. Aquí aplicamos
+//el principio OCP ya que ApplicationUser es nuestra clase abierta a la extensión (Le podemos agregar nuevas 
+//responsanilidades por ejemplo ShowProperties o NameOfProperties) y las sucesoras las cuales son
+//Client y Tecnico son clases cerradas a la modificación es decir, no modificamos su comportamiento.
 
 namespace Ignis.Areas.Identity.Data
 {
@@ -38,6 +42,10 @@ namespace Ignis.Areas.Identity.Data
             this.Role = role;
         }
          public virtual List<String> ShowProperties()
+         {
+             return new List<String>();
+         }
+        public virtual List<String> NamesOfProperties()
          {
              return new List<String>();
          }

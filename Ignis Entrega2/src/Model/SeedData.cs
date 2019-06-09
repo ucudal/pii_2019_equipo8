@@ -3,6 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 
+//Cumple la misma responsabilidad que SeedIdentityData, solo que en este caso, inicializa la
+//base de datos con los datos referentes a los roles
 namespace Ignis.Models
 {
     public static class SeedData

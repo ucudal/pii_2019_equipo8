@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Ignis.Areas.Identity.Data;
 
+//Este es el contexto el cual hace que se guarden los usuarios en la base de datos
 namespace Ignis.Areas.Identity.Data
 {
     public class IdentityContext : IdentityDbContext<ApplicationUser>
