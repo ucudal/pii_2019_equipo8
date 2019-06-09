@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\RazorPagesMovie.csproj" />
+    <ProjectReference Include="..\src\Ignis.csproj" />
   </ItemGroup>
 
 </Project>
