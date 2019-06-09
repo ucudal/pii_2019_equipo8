@@ -15,9 +15,9 @@ namespace Ignis.Areas.Identity.Data
             appUser.Id ="1234";
             appUser.Name = "Juan Perez";
             appUser.DOB = new DateTime(1988, 12, 11);
-            appUser.Role = "Fotografo";
-            string actual = string.Format(@"{0} {1} {2} {3}", appUser.Id, appUser.Name, appUser.DOB.ToShortDateString(), appUser.Role);
-            string expected = "1234 Juan Perez 12/11/1988 Fotografo";
+            appUser.Role = "Tecnico";
+            string actual = string.Format(@"{0} {1} {2} {3}", appUser.Id, appUser.Name, appUser.DOB.ToString("dd/MM/yyyy"), appUser.Role);
+            string expected = "1234 Juan Perez 11/12/1988 Tecnico";
             Assert.Equal(expected, actual);
         }
 
@@ -30,8 +30,8 @@ namespace Ignis.Areas.Identity.Data
             client1.Name = "Maria Rodriguez";
             client1.DOB = new DateTime(1990, 10, 20);
             client1.Role = "Editor";
-            string actual = string.Format(@"{0} {1} {2} {3} {4}", client1.Id, client1.Name, client1.DOB.ToShortDateString(), client1.Role, client1.Projects);
-            string expected = "1235 Maria Rodriguez 10/20/1990 Editor 3";
+            string actual = string.Format(@"{0} {1} {2} {3} {4}", client1.Id, client1.Name, client1.DOB.ToString("dd/MM/yyyy"), client1.Role, client1.Projects);
+            string expected = "1235 Maria Rodriguez 20/10/1990 Editor 3";
             Assert.Equal(expected, actual);
         }
 
