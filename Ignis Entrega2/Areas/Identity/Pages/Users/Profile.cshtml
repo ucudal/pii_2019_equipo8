@@ -1,0 +1,67 @@
+@page
+@model Ignis.Areas.Identity.Pages.Users.ProfileModel
+
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<h1>Profile</h1>
+
+<!-- <p>
+    <a asp-page="Create">Create New</a>
+</p> -->
+<table class="table">
+    <thead>
+@if(Model.ApplicationUser.Role=="Tecnico"){
+<tr>
+
+            <th>
+                Name
+            </th>
+           <th>
+                AverageRanking
+            </th>
+            <th>
+                Available
+            </th>
+            <th>
+                WorkedHours
+            </th>
+            <th>
+                TotalWorks
+            </th>
+            <th></th>
+        </tr>
+}else{
+<tr>
+
+            <th>
+                Name
+            </th>
+           <th>
+                Projects
+            <th></th>
+        </tr>
+}
+
+       
+    </thead>
+    <tbody>
+          <tr>
+             @foreach (var item in Model.Properties) { 
+        <td>
+          
+         @Html.DisplayFor(Model => item )
+
+            </td>
+             }
+ <td>
+            </td>
+</tr>
+
+    </tbody>
+</table>
+</table>
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
