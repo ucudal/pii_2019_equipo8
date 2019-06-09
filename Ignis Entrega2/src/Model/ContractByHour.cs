@@ -1,10 +1,10 @@
-// using System;
-// using System.Collections.Generic;
+ using System;
+ using System.Collections.Generic;
 
-// namespace Ignis.Models
-// {
-//     public class ContractByHour : Contract
-//     {
+ namespace Ignis.Models
+ {
+     public class ContractByHour : Contract
+     {
 
-//     }
-// }
+     }
+ }

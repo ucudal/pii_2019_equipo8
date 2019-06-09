@@ -12,42 +12,21 @@
 </p> -->
 <table class="table">
     <thead>
-@if(Model.ApplicationUser.Role=="Tecnico"){
-<tr>
+        <tr>
+@foreach(var item in Model.NamesOfProperties){
+
 
             <th>
-                Name
+                @Html.DisplayFor(Model => item )
             </th>
-           <th>
-                AverageRanking
-            </th>
-            <th>
-                Available
-            </th>
-            <th>
-                WorkedHours
-            </th>
-            <th>
-                TotalWorks
-            </th>
-            <th></th>
-        </tr>
-}else{
-<tr>
-
-            <th>
-                Name
-            </th>
-           <th>
-                Projects
-            <th></th>
-        </tr>
 }
+        </tr>
+
 
        
     </thead>
     <tbody>
-          <tr>
+        <tr>
              @foreach (var item in Model.Properties) { 
         <td>
           
@@ -55,9 +34,7 @@
 
             </td>
              }
- <td>
-            </td>
-</tr>
+        </tr>
 
     </tbody>
 </table>

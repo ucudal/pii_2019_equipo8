@@ -12,6 +12,10 @@ using Microsoft.Extensions.Logging;
 using Ignis.Areas.Identity.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
+//RegisterModel es la clase que se encarga de crear los usuarios y guardarlos en la base de datos.
+//Esta clase cumple con el patrón Creator ya que RegisterModel es un experto con respecto a crear
+//a Client o Tecnico (tiene los datos que serán provistos para crear dichos usuarios) y además los
+//usa de forma cercana (por ejemplo cuando verifica si el email es correcto)
 namespace Ignis.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
@@ -79,6 +83,10 @@ namespace Ignis.Areas.Identity.Pages.Account
         }
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            //Aquí tuvimos que preguntar con un if si el rol del usuario es de Tecnico o Client.
+            //Si bien esto puede ser considerado como "bad smell", decidimos hacerlo de esta forma ya
+            //que la aplicación necesita saber si el usuario que se registra es de tipo Tecnico o Client
+            //y de esta forma se instancia como uno de esos tipos y no como ApplicationUser.
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {   
