@@ -1,0 +1,40 @@
+@page
+@model RazorPagesMovie.Areas.Identity.Pages.Users.ProfileModel
+
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<h1>Profile</h1>
+
+<!-- <p>
+    <a asp-page="Create">Create New</a>
+</p> -->
+<table class="table">
+    <thead>
+@foreach(var item in Model.NameOfProperties){
+    <th>
+        @Html.DisplayFor(Model => item )
+    </th>
+}
+
+       
+    </thead>
+    <tbody>
+          <tr>
+             @foreach (var item in Model.Properties) { 
+        <td>
+          
+         @Html.DisplayFor(Model => item )
+
+            </td>
+             }
+ <td>
+                <a asp-page="./Edit" asp-route-id="@Model.ApplicationUser.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@Model.ApplicationUser.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@Model.ApplicationUser.Id">Delete</a>
+            </td>
+</tr>
+    </tbody>
+</table>
+</table>

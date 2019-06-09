@@ -1,0 +1,139 @@
+@page
+@model RazorPagesMovie.Pages.Worker.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Tecnico</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Tecnico.Available" /> @Html.DisplayNameFor(model => model.Tecnico.Available))
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tecnico.WorkedHours" class="control-label"></label>
+                <input asp-for="Tecnico.WorkedHours" class="form-control" />
+                <span asp-validation-for="Tecnico.WorkedHours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tecnico.TotalWorks" class="control-label"></label>
+                <input asp-for="Tecnico.TotalWorks" class="form-control" />
+                <span asp-validation-for="Tecnico.TotalWorks" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tecnico.RoleID" class="control-label"></label>
+                <input asp-for="Tecnico.RoleID" class="form-control" />
+                <span asp-validation-for="Tecnico.RoleID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tecnico.Id" class="control-label"></label>
+                <input asp-for="Tecnico.Id" class="form-control" />
+                <span asp-validation-for="Tecnico.Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tecnico.Name" class="control-label"></label>
+                <input asp-for="Tecnico.Name" class="form-control" />
+                <span asp-validation-for="Tecnico.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tecnico.DOB" class="control-label"></label>
+                <input asp-for="Tecnico.DOB" class="form-control" />
+                <span asp-validation-for="Tecnico.DOB" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tecnico.Role" class="control-label"></label>
+                <input asp-for="Tecnico.Role" class="form-control" />
+                <span asp-validation-for="Tecnico.Role" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tecnico.UserName" class="control-label"></label>
+                <input asp-for="Tecnico.UserName" class="form-control" />
+                <span asp-validation-for="Tecnico.UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tecnico.NormalizedUserName" class="control-label"></label>
+                <input asp-for="Tecnico.NormalizedUserName" class="form-control" />
+                <span asp-validation-for="Tecnico.NormalizedUserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tecnico.Email" class="control-label"></label>
+                <input asp-for="Tecnico.Email" class="form-control" />
+                <span asp-validation-for="Tecnico.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tecnico.NormalizedEmail" class="control-label"></label>
+                <input asp-for="Tecnico.NormalizedEmail" class="form-control" />
+                <span asp-validation-for="Tecnico.NormalizedEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Tecnico.EmailConfirmed" /> @Html.DisplayNameFor(model => model.Tecnico.EmailConfirmed))
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tecnico.PasswordHash" class="control-label"></label>
+                <input asp-for="Tecnico.PasswordHash" class="form-control" />
+                <span asp-validation-for="Tecnico.PasswordHash" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tecnico.SecurityStamp" class="control-label"></label>
+                <input asp-for="Tecnico.SecurityStamp" class="form-control" />
+                <span asp-validation-for="Tecnico.SecurityStamp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tecnico.ConcurrencyStamp" class="control-label"></label>
+                <input asp-for="Tecnico.ConcurrencyStamp" class="form-control" />
+                <span asp-validation-for="Tecnico.ConcurrencyStamp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tecnico.PhoneNumber" class="control-label"></label>
+                <input asp-for="Tecnico.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Tecnico.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Tecnico.PhoneNumberConfirmed" /> @Html.DisplayNameFor(model => model.Tecnico.PhoneNumberConfirmed))
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Tecnico.TwoFactorEnabled" /> @Html.DisplayNameFor(model => model.Tecnico.TwoFactorEnabled))
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tecnico.LockoutEnd" class="control-label"></label>
+                <input asp-for="Tecnico.LockoutEnd" class="form-control" />
+                <span asp-validation-for="Tecnico.LockoutEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Tecnico.LockoutEnabled" /> @Html.DisplayNameFor(model => model.Tecnico.LockoutEnabled))
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tecnico.AccessFailedCount" class="control-label"></label>
+                <input asp-for="Tecnico.AccessFailedCount" class="form-control" />
+                <span asp-validation-for="Tecnico.AccessFailedCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
