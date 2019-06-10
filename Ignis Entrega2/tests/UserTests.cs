@@ -9,6 +9,7 @@ namespace Ignis.Areas.Identity.Data
     public class UserTests
     {
         [Fact]
+        //Se verifica la creacion de un ApplicationUser
         public void TestApplicationUser()
         {
             ApplicationUser appUser = new ApplicationUser();
@@ -22,6 +23,7 @@ namespace Ignis.Areas.Identity.Data
         }
 
         [Fact]
+        //Se verifica la creacion de un Client
         public void TestClient()
         {
             Client client1 = new Client();
@@ -36,6 +38,7 @@ namespace Ignis.Areas.Identity.Data
         }
 
         [Fact]
+        //Se verifica la creacion de un Tecnico
         public void TestTecnico()
         {
             Tecnico tec1 = new Tecnico();
