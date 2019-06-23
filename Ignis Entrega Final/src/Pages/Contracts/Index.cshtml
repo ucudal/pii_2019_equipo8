@@ -1,0 +1,57 @@
+@page
+@model Ignis.Pages_Contracts.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Contracts</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.DOB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.Contracts)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ApplicationUser.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ApplicationUser.DOB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ApplicationUser.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ApplicationUser.Email)
+            </td>
+            <td>
+                
+                @foreach (var item in Model.ApplicationUser.Contracts)
+                {
+                    <dd>
+                        @Html.DisplayFor(modelItem => item.Tecnico.Name)
+                    </dd>
+                }
+            </td>
+        </tr>
+
+    </tbody>
+</table>
