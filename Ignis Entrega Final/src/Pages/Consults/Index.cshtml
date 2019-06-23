@@ -1,0 +1,42 @@
+@page
+@model Ignis.Pages_Consults.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Consult
+            </th>
+            <th>
+                User
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <td>
+@foreach (var item in Model.Admin.Consults) {
+        
+            <dd>
+                @Html.DisplayFor(modelItem => item.Consult)
+            </dd>
+        
+}
+        </td>
+        <td>
+@foreach (var item in Model.Users) {
+        
+            <dd>
+                @Html.DisplayFor(modelItem => item.Name)
+            </dd>
+        
+}
+        </td>
+    </tbody>
+</table>
