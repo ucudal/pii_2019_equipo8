@@ -29,8 +29,6 @@ namespace Ignis.Areas.Identity.Pages.Users
         }
         public List<String> Properties {get; set;}
         public List<String> NamesOfProperties {get; set;}
-        public int WorkerRoleID { get; set; }
-        public string TecnicoID { get; set; }
         public Ignis.Models.RoleWorkerViewModel.RoleWorkerIndexData Tecnico { get; set; }
         public ApplicationUser ApplicationUser { get;set; }
 
@@ -40,7 +38,7 @@ namespace Ignis.Areas.Identity.Pages.Users
             {
                 return NotFound();
             }
-            ApplicationUser = await _context.Users.FirstOrDefaultAsync(m => m.Id == id);
+            ApplicationUser = await _context.Users.Include(m => m.Contracts).FirstOrDefaultAsync(m => m.Id == id);
             Tecnico t = await _context.Tecnicos.Include(r => r.RoleWorker)
             .FirstOrDefaultAsync(m => m.Id == id);
             if (t != null)

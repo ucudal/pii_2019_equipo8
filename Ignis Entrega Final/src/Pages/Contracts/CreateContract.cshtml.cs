@@ -7,8 +7,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Ignis.Areas.Identity.Data;
 using Ignis.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace Ignis.Pages_AdminContracts
+namespace Ignis.Pages_Contracts
 {
     public class CreateModel : PageModel
     {
@@ -21,16 +22,21 @@ namespace Ignis.Pages_AdminContracts
 
         public IActionResult OnGet()
         {
-        ViewData["Tecnico"] = new SelectList(_context.Tecnicos, "Id", "Name");
-        ViewData["Client"] = new SelectList(_context.Clients, "Id", "Name");
+            Admin = _context.Admin.Include(m => m.ListaTecnicos)
+            .FirstOrDefault(m => m.Role == IdentityData.AdminRoleName);
+            ViewData["Tecnico"] = new SelectList(Admin.ListaTecnicos, "Id", "Name");
             return Page();
         }
 
         [BindProperty]
         public Contract Contract { get; set; }
+        public Admin Admin { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
+            string ClientName = User.Identity.Name;
+            Client client = _context.Clients.FirstOrDefault(m => m.Email == ClientName);
+            Contract.ClientId = client.Id;
             Contract contract = _context.Contract.Find(Contract.ClientId, Contract.TecnicoId);
             if (contract != null)
             {

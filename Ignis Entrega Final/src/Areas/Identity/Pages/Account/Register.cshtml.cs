@@ -88,6 +88,14 @@ namespace Ignis.Areas.Identity.Pages.Account
             //que la aplicación necesita saber si el usuario que se registra es de tipo Tecnico o Client
             //y de esta forma se instancia como uno de esos tipos y no como ApplicationUser.
             returnUrl = returnUrl ?? Url.Content("~/");
+            Admin admin = new Admin();
+            foreach(Admin u in _context.Admin)
+            {
+                if (u.Role == IdentityData.AdminRoleName)
+                {
+                    admin = u;
+                }
+            }
             if (ModelState.IsValid)
             {   
                 if (Input.Role=="Tecnico"){
@@ -118,6 +126,8 @@ namespace Ignis.Areas.Identity.Pages.Account
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
+                    admin.ListaTecnicos.Add(user);
+                    _context.SaveChanges();
                     return LocalRedirect(returnUrl);
                 }
                 
