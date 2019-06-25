@@ -6,52 +6,61 @@
 }
 
 <h1>Contracts</h1>
+@if(Model.ApplicationUser.Role=="Cliente")
+{
+<p>
+    <a asp-page="CreateContract">Create New</a>
+</p>
+}
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser.Name)
+                BaseCost
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser.DOB)
+                Time
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser.UserName)
+                TotalCost
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+                Tecnico
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser.Contracts)
+                Client
             </th>
         </tr>
     </thead>
     <tbody>
 
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => Model.ApplicationUser.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.ApplicationUser.DOB)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.ApplicationUser.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.ApplicationUser.Email)
-            </td>
-            <td>
-                
-                @foreach (var item in Model.ApplicationUser.Contracts)
-                {
-                    <dd>
-                        @Html.DisplayFor(modelItem => item.Tecnico.Name)
-                    </dd>
-                }
-            </td>
-        </tr>
+            @foreach(var item in Model.ApplicationUser.Contracts)
+            {
+                <tr>
+                <td>
+                    @Html.DisplayFor(modelitem => item.BaseCost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.Time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.TotalCost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.Tecnico.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.Client.Name)
+                </td>
+            @if(Model.ApplicationUser.Role=="Cliente")
+            {
+                <td>
+                    <a asp-page="./Delete" asp-route-id="@Model.ApplicationUser.Id">Delete</a>
+                </td>
+            }
+            </tr>
+            }
 
     </tbody>
 </table>
