@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 //Client es el usuario que tiene el rol del "cliente" en la aplicación que pidió el Centro Ignis.
 //Por lo tanto Client hereda ApplicationUser para que sea un usuario como tal y además definimos las metodos
@@ -18,25 +20,18 @@ namespace Ignis.Models
                 return this.Contracts.Count;
             }
         }
-        
-        public override List<String> ShowProperties()
-        {
-            List<String> result = new List<String>
+        [NotMapped]
+        public override ICollection<Property> Properties 
+        { 
+            get
             {
-                this.Name.ToString(),
-                this.Projects.ToString()
-            };
-            return result;
+                ICollection<Property> result = new List<Property>
+                {
+                    new Property { Name = "Name", Value = this.Name },
+                    new Property { Name = "Projects", Value = this.Projects.ToString() }
+                };
+                return result;
+            } 
         }
-        public override List<String> NamesOfProperties()
-        {
-            List<String> result = new List<String>
-            {
-                "Name",
-                "Projects"
-            };
-            return result;
-        }
- 
     }
 }

@@ -16,7 +16,12 @@ namespace Ignis.Areas.Identity.Data
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser
     {
-         [Key]
+        public class Property
+        {
+            public string Name { get; set; }
+            public string Value { get; set; }
+        }
+        [Key]
         public override string Id {get;set;}
         [PersonalData]
         public string Name { get; set; }
@@ -26,6 +31,9 @@ namespace Ignis.Areas.Identity.Data
         [PersonalData]
         public DateTime DOB { get; set; }
         public ICollection<Contract> Contracts { get; set; } = new List<Contract>();
+        [NotMapped]
+        public virtual ICollection<Property> Properties { get; set; } = new List<Property>();
+        public string Response { get; set; }
 
         // Es necesario tener acceso a IdentityManager para poder buscar el rol de este usuario; esta propiedad se asigna cada vez que se
         // cambia el rol usando IdentityManager para poder buscar por rol después cuando no hay acceso a IdentityManager. La propiedad
@@ -43,13 +51,5 @@ namespace Ignis.Areas.Identity.Data
 
             this.Role = role;
         }
-         public virtual List<String> ShowProperties()
-         {
-             return new List<String>();
-         }
-        public virtual List<String> NamesOfProperties()
-         {
-             return new List<String>();
-         }
     }
 }

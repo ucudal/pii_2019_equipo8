@@ -46,13 +46,6 @@ namespace Ignis.Areas.Identity.Pages.Users
                 ApplicationUser = t;
             }
             
-            //Acá estan las 2 operaciones polimórficas, las cuales cumplen con el principio
-            //LSP ya que al sustituir ApplicationUser por Client o Tecnico no se encuentran efectos
-            //colaterales. Un ejemplo de efecto colateral puede ser que alla una propiedad que valga
-            //null.
-            
-            Properties = ApplicationUser.ShowProperties();
-            NamesOfProperties = ApplicationUser.NamesOfProperties();
             if (ApplicationUser == null)
             {
                 return NotFound();

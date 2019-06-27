@@ -105,9 +105,8 @@ namespace Ignis.Areas.Identity.Pages.Account
                     UserName = Input.Email,
                     Email = Input.Email,
                     Role = Input.Role,
-                    AverageRanking = 0,
                     Available = true,
-                    WorkedHours = 0,
+                    TotalPoints = 0,
                     TotalWorks = 0
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);

@@ -42,11 +42,11 @@ namespace Ignis.Migrations
                     AccessFailedCount = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     DOB = table.Column<DateTime>(nullable: false),
+                    Response = table.Column<string>(nullable: true),
                     Role = table.Column<string>(nullable: true),
                     Discriminator = table.Column<string>(nullable: false),
-                    AverageRanking = table.Column<int>(nullable: true),
                     Available = table.Column<bool>(nullable: true),
-                    WorkedHours = table.Column<int>(nullable: true),
+                    TotalPoints = table.Column<int>(nullable: true),
                     TotalWorks = table.Column<int>(nullable: true),
                     AdminId = table.Column<string>(nullable: true)
                 },
@@ -59,6 +59,20 @@ namespace Ignis.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Feedbacks",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Comment = table.Column<string>(nullable: true),
+                    Rating = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Feedbacks", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -332,6 +346,9 @@ namespace Ignis.Migrations
 
             migrationBuilder.DropTable(
                 name: "Contract");
+
+            migrationBuilder.DropTable(
+                name: "Feedbacks");
 
             migrationBuilder.DropTable(
                 name: "RoleWorker");

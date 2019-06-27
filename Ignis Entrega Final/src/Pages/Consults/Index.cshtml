@@ -35,7 +35,13 @@
             <dd>
                 @Html.DisplayFor(modelItem => item.Name)
             </dd>
-        
+}
+        </td>
+        <td>
+@foreach (var item in Model.Users) {
+            <dd>
+                <a asp-page="./Respond" asp-route-id="@item.Id">Respond</a>
+            </dd>
 }
         </td>
     </tbody>

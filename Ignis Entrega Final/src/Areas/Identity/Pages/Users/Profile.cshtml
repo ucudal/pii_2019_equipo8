@@ -13,11 +13,10 @@
 <table class="table">
     <thead>
         <tr>
-@foreach(var item in Model.NamesOfProperties){
-
+@foreach(var item in Model.ApplicationUser.Properties){
 
             <th>
-                @Html.DisplayFor(Model => item )
+                @Html.DisplayFor(Model => item.Name )
             </th>
 }
         </tr>
@@ -27,10 +26,10 @@
     </thead>
     <tbody>
         <tr>
-             @foreach (var item in Model.Properties) { 
+             @foreach (var item in Model.ApplicationUser.Properties) { 
         <td>
           
-         @Html.DisplayFor(Model => item )
+         @Html.DisplayFor(Model => item.Value )
 
         </td>
         }

@@ -1,0 +1,54 @@
+@page
+@model Ignis.Pages_Consults.RespondModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Respond</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <label asp-for="ApplicationUser.Response" class="control-label"></label>
+                    <input asp-for="ApplicationUser.Response" class="form-control" />
+                    <span asp-validation-for="ApplicationUser.Response" class="text-danger"></span>
+                </label>
+            </div>
+            <input type="hidden" asp-for="ApplicationUser.Id" />
+            <input type="hidden" asp-for="ApplicationUser.Name" />
+            <input type="hidden" asp-for="ApplicationUser.DOB" />
+            <input type="hidden" asp-for="ApplicationUser.Role" />
+            <input type="hidden" asp-for="ApplicationUser.UserName" />
+            <input type="hidden" asp-for="ApplicationUser.NormalizedUserName" />
+            <input type="hidden" asp-for="ApplicationUser.Email" />
+            <input type="hidden" asp-for="ApplicationUser.NormalizedEmail" />
+            <input type="hidden" asp-for="ApplicationUser.EmailConfirmed" />
+            <input type="hidden" asp-for="ApplicationUser.PasswordHash" />
+            <input type="hidden" asp-for="ApplicationUser.SecurityStamp" />
+            <input type="hidden" asp-for="ApplicationUser.ConcurrencyStamp" />
+            <input type="hidden" asp-for="ApplicationUser.PhoneNumber" />
+            <input type="hidden" asp-for="ApplicationUser.PhoneNumberConfirmed" />
+            <input type="hidden" asp-for="ApplicationUser.TwoFactorEnabled" />
+            <input type="hidden" asp-for="ApplicationUser.LockoutEnd" />
+            <input type="hidden" asp-for="ApplicationUser.LockoutEnabled" />
+            <input type="hidden" asp-for="ApplicationUser.AccessFailedCount" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

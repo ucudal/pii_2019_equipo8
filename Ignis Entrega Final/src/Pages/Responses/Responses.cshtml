@@ -1,0 +1,25 @@
+@page
+@model Ignis.Pages_Responses.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Answer
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <td>
+            @Html.DisplayFor(modelItem => Model.ApplicationUser.Response) 
+        </td>
+        <td>
+    </tbody>
+</table>

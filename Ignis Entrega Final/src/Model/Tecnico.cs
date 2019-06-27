@@ -13,41 +13,43 @@ namespace Ignis.Models
 {
     public class Tecnico : Ignis.Areas.Identity.Data.ApplicationUser
     {
-        public int AverageRanking { get; set; }
+        public float AverageRanking 
+        { 
+            get
+            {
+                if (this.TotalWorks == 0)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return (float)this.TotalPoints/(float)this.TotalWorks;
+                }
+            } 
+        }
         public bool Available { get; set; }
-        public int WorkedHours{ get; set; }
+        public int TotalPoints { get; set; }
         public int TotalWorks { get; set; }
         public IList<RoleWorker> RoleWorker { get; set; } = new List<RoleWorker>();
-        public override List<String> ShowProperties()
-        {
-            List<String> result = new List<String>
+        [NotMapped]
+        public override ICollection<Property> Properties {
+            get
             {
-                this.Name.ToString(),
-                this.AverageRanking.ToString(),
-                this.Available.ToString(),
-                this.WorkedHours.ToString(),
-                this.TotalWorks.ToString()
-            };
-            string roles = "";
-        foreach (RoleWorker r in this.RoleWorker)
-        {
-            roles = roles + r.Title + ", ";
-        }
-        result.Add(roles);
-        return result;
-        }
-        public override List<String> NamesOfProperties()
-        {
-            List<String> result = new List<String>
-            {
-                "Name",
-                "AverageRanking",
-                "Available",
-                "WorkedHours",
-                "TotalWorks",
-                "Roles"
-            };
-            return result;
+                ICollection<Property> result = new List<Property>
+                {
+                    new Property { Name = "AverageRanking", Value = this.AverageRanking.ToString() },
+                    new Property { Name = "Available", Value = this.Available.ToString() },
+                    new Property { Name = "TotalPoints", Value = this.TotalPoints.ToString() },
+                    new Property { Name = "TotalWorks", Value = this.TotalWorks.ToString() }
+                };
+                string roles = "";
+                foreach(RoleWorker r in this.RoleWorker)
+                {
+                    roles = roles + r.Title + ", ";
+                }
+                result.Add(new Property { Name = "Roles", Value = roles });
+                return result;
+            }    
         }
         
  

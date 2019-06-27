@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ignis.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20190623185711_InitialCreate")]
+    [Migration("20190627203056_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,6 +55,8 @@ namespace Ignis.Migrations
                     b.Property<string>("PhoneNumber");
 
                     b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<string>("Response");
 
                     b.Property<string>("Role");
 
@@ -120,6 +122,20 @@ namespace Ignis.Migrations
                     b.HasIndex("TecnicoId");
 
                     b.ToTable("Contract");
+                });
+
+            modelBuilder.Entity("Ignis.Models.Feedback", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Comment");
+
+                    b.Property<int>("Rating");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Feedbacks");
                 });
 
             modelBuilder.Entity("Ignis.Models.RoleWorker", b =>
@@ -257,7 +273,7 @@ namespace Ignis.Migrations
                 {
                     b.HasBaseType("Ignis.Areas.Identity.Data.ApplicationUser");
 
-                    b.ToTable("Admin");
+                    b.ToTable("Feedback");
 
                     b.HasDiscriminator().HasValue("Admin");
                 });
@@ -279,11 +295,9 @@ namespace Ignis.Migrations
 
                     b.Property<bool>("Available");
 
-                    b.Property<int>("AverageRanking");
+                    b.Property<int>("TotalPoints");
 
                     b.Property<int>("TotalWorks");
-
-                    b.Property<int>("WorkedHours");
 
                     b.HasIndex("AdminId");
 
