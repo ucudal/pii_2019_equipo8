@@ -44,9 +44,9 @@ namespace Ignis.Areas.Identity.Data
             Tecnico tec1 = new Tecnico();
             tec1.Available = true;
             tec1.AverageRanking = 4;
-            tec1.WorkedHours = 40;
+            tec1.TotalPoints = 40;
             tec1.TotalWorks = 12;
-            string actual = string.Format(@"{0} {1} {2} {3}", tec1.Available, tec1.AverageRanking, tec1.WorkedHours, tec1.TotalWorks);
+            string actual = string.Format(@"{0} {1} {2} {3}", tec1.Available, tec1.AverageRanking, tec1.TotalPoints, tec1.TotalWorks);
             string expected = "True 4 40 12";
             Assert.Equal(expected, actual);
         }

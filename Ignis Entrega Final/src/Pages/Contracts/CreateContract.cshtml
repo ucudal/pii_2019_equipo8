@@ -33,6 +33,36 @@
         </form>
     </div>
 </div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Roles
+            </th>
+            <th>
+                Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Admin.ListaTecnicos) {
+        <tr>
+            <td>
+                @foreach (var i in item.RoleWorker)
+                {
+                    <dd>
+                        @Html.DisplayFor(modelItem => i.Title)
+                    </dd>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
 
 <div>
     <a asp-page="Index">Back to List</a>
