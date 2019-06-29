@@ -67,7 +67,7 @@ namespace Ignis.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Comment = table.Column<string>(nullable: true),
+                    Comment = table.Column<string>(nullable: false),
                     Rating = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -206,7 +206,7 @@ namespace Ignis.Migrations
                 columns: table => new
                 {
                     ClientId = table.Column<string>(nullable: false),
-                    TecnicoId = table.Column<string>(nullable: false),
+                    TechnicianId = table.Column<string>(nullable: false),
                     BaseCost = table.Column<int>(nullable: false),
                     Time = table.Column<int>(nullable: false),
                     ClientId1 = table.Column<string>(nullable: true),
@@ -214,7 +214,7 @@ namespace Ignis.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Contract", x => new { x.ClientId, x.TecnicoId });
+                    table.PrimaryKey("PK_Contract", x => new { x.ClientId, x.TechnicianId });
                     table.ForeignKey(
                         name: "FK_Contract_AspNetUsers_AdminId",
                         column: x => x.AdminId,
@@ -228,8 +228,8 @@ namespace Ignis.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Contract_AspNetUsers_TecnicoId",
-                        column: x => x.TecnicoId,
+                        name: "FK_Contract_AspNetUsers_TechnicianId",
+                        column: x => x.TechnicianId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -243,14 +243,14 @@ namespace Ignis.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Title = table.Column<string>(maxLength: 60, nullable: false),
                     Level = table.Column<int>(nullable: true),
-                    TecnicoId = table.Column<string>(nullable: true)
+                    TechnicianId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_RoleWorker", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_RoleWorker_AspNetUsers_TecnicoId",
-                        column: x => x.TecnicoId,
+                        name: "FK_RoleWorker_AspNetUsers_TechnicianId",
+                        column: x => x.TechnicianId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -314,14 +314,14 @@ namespace Ignis.Migrations
                 column: "ClientId1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Contract_TecnicoId",
+                name: "IX_Contract_TechnicianId",
                 table: "Contract",
-                column: "TecnicoId");
+                column: "TechnicianId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RoleWorker_TecnicoId",
+                name: "IX_RoleWorker_TechnicianId",
                 table: "RoleWorker",
-                column: "TecnicoId");
+                column: "TechnicianId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

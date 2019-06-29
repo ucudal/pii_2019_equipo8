@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 namespace Ignis.Pages.AssignRoles
 {
-    public class EditModel : TecnicoWorkerRolePageModel
+    public class EditModel : TechnicianWorkerRolePageModel
     {
 
         private readonly Ignis.Areas.Identity.Data.IdentityContext _context;
@@ -27,7 +27,7 @@ namespace Ignis.Pages.AssignRoles
         }
 
         [BindProperty]
-        public Tecnico Tecnico { get; set; }
+        public Technician Technician { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -37,16 +37,16 @@ namespace Ignis.Pages.AssignRoles
                 return NotFound();
             }
 
-           Tecnico = await _context.Tecnicos
+           Technician = await _context.Technicians
             .Include(i => i.RoleWorker)
             .AsNoTracking()
             .FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Tecnico == null)
+            if (Technician == null)
             {
                 return NotFound();
             }
-            PopulateAssignedCourseData(_context, Tecnico);
+            PopulateAssignedCourseData(_context, Technician);
             return Page();
         }
 
@@ -57,12 +57,12 @@ namespace Ignis.Pages.AssignRoles
                 return Page();
             }
 
-            var instructorToUpdate = await _context.Tecnicos
+            var instructorToUpdate = await _context.Technicians
                     .Include(i => i.RoleWorker)
                 .FirstOrDefaultAsync(s => s.Id == id);
-            if (await TryUpdateModelAsync<Tecnico>(
+            if (await TryUpdateModelAsync<Technician>(
                 instructorToUpdate,
-                "Tecnico",
+                "Technician",
                 i => i.Name,i => i.RoleWorker))
             {
                 UpdateInstructorCourses(_context, selectedCourses, instructorToUpdate);

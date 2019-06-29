@@ -9,8 +9,12 @@
 @if(Model.ApplicationUser.Role=="Cliente")
 {
 <p>
-    <a asp-page="CreateContract">Create New</a>
+    <a asp-page="CreateByDay">Create Contract by Day</a>
 </p>
+<p>
+    <a asp-page="CreateByHour">Create Contract by Hours</a>
+</p>
+
 }
 
 <table class="table">
@@ -26,7 +30,7 @@
                 TotalCost
             </th>
             <th>
-                Tecnico
+                Technician
             </th>
             <th>
                 Client
@@ -48,7 +52,7 @@
                     @Html.DisplayFor(modelitem => item.TotalCost)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelitem => item.Tecnico.Name)
+                    @Html.DisplayFor(modelitem => item.Technician.Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelitem => item.Client.Name)
@@ -56,7 +60,8 @@
             @if(Model.ApplicationUser.Role=="Cliente")
             {
                 <td>
-                    <a asp-page="./Delete" asp-route-id="@Model.ApplicationUser.Id">Delete</a>
+                    <a asp-page="./Delete" asp-route-id1="@Model.ApplicationUser.Id"
+                    asp-route-id2="@item.TechnicianId">Delete</a>
                 </td>
             }
             </tr>

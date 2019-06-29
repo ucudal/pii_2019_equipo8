@@ -24,7 +24,7 @@ namespace Ignis.Pages_AdminContracts
         public async Task OnGetAsync()
         {
             Contract = await _context.Contract
-                .Include(c => c.Tecnico).Include(c => c.Client).ToListAsync();
+                .Include(c => c.Technician).Include(c => c.Client).ToListAsync();
         }
     }
 }

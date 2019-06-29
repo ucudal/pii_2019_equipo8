@@ -7,17 +7,17 @@ using Ignis.Models;
 
 namespace Ignis.Pages.AssignRoles
 {
-    public class TecnicoWorkerRolePageModel : PageModel
+    public class TechnicianWorkerRolePageModel : PageModel
     {
 
         public List<AssignedRoleData> AssignedRoleDataList;
 
         public void PopulateAssignedCourseData(Ignis.Areas.Identity.Data.IdentityContext context, 
-                                               Tecnico tecnico)
+                                               Technician Technician)
         {
             var allRoles = context.RoleWorker;
-            var tecnicoRoles = new HashSet<int>(
-                tecnico.RoleWorker.Select(c => c.ID));
+            var TechnicianRoles = new HashSet<int>(
+                Technician.RoleWorker.Select(c => c.ID));
             AssignedRoleDataList = new List<AssignedRoleData>();
             foreach (var course in allRoles)
             {
@@ -26,13 +26,13 @@ namespace Ignis.Pages.AssignRoles
                     RoleWorkerID = course.ID,
                     Title = course.Title,
                     
-                    Assigned = tecnicoRoles.Contains(course.ID)
+                    Assigned = TechnicianRoles.Contains(course.ID)
                 });
             }
         }
 
         public void UpdateInstructorCourses(Ignis.Areas.Identity.Data.IdentityContext context, 
-            string[] selectedCourses, Tecnico instructorToUpdate)
+            string[] selectedCourses, Technician instructorToUpdate)
         {
             if (selectedCourses == null)
             {

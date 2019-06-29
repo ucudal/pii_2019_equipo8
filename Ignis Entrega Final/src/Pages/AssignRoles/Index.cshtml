@@ -35,9 +35,9 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.tecnico.Tecnicos) {
+@foreach (var item in Model.Technician.Technicians) {
      string selectedRow = "";
-            if (item.Id == Model.TecnicoID)
+            if (item.Id == Model.TechnicianID)
             {
                 selectedRow = "success";
             }

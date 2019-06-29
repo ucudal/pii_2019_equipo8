@@ -6,12 +6,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
-//Tecnico es el usuario que tiene el rol del "técnico" en la aplicación que pidió el Centro Ignis.
-//Por lo tanto Client Tecnico ApplicationUser para que sea un usuario como tal y además definimos las metodos
-//ShowProperties y NamesOfProperties para poder mostrar las propiedades ya que son distintas a las de Tecnico.
+//Technician es el usuario que tiene el rol del "técnico" en la aplicación que pidió el Centro Ignis.
+//Por lo tanto Client Technician ApplicationUser para que sea un usuario como tal y además definimos las metodos
+//ShowProperties y NamesOfProperties para poder mostrar las propiedades ya que son distintas a las de Technician.
 namespace Ignis.Models
 {
-    public class Tecnico : Ignis.Areas.Identity.Data.ApplicationUser
+    public class Technician : Ignis.Areas.Identity.Data.ApplicationUser
     {
         public float AverageRanking 
         { 

@@ -8,7 +8,10 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="CreateByDay">Create By Day</a>
+</p>
+<p>
+    <a asp-page="CreateByHour">Create By Hour</a>
 </p>
 <table class="table">
     <thead>
@@ -23,7 +26,7 @@
                 @Html.DisplayNameFor(model => model.Contract[0].TotalCost)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Contract[0].Tecnico)
+                @Html.DisplayNameFor(model => model.Contract[0].Technician)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Contract[0].Client)
@@ -43,15 +46,15 @@
                 @Html.DisplayFor(modelItem => item.TotalCost)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Tecnico.Name)
+                @Html.DisplayFor(modelItem => item.Technician.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Client.Name)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ClientId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ClientId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ClientId">Delete</a>
+                <a asp-page="./Edit" asp-route-id1="@item.ClientId" asp-route-id2="@item.TechnicianId">Edit</a> |
+                <a asp-page="./Details" asp-route-id1="@item.ClientId" asp-route-id2="@item.TechnicianId">Details</a> |
+                <a asp-page="./Delete" asp-route-id1="@item.ClientId" asp-route-id2="@item.TechnicianId">Delete</a>
             </td>
         </tr>
 }

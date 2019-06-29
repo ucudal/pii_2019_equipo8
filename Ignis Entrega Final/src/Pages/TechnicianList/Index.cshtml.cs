@@ -19,31 +19,31 @@ namespace Ignis.Pages_TechnicianList
             _context = context;
         }
 
-        public IList<Tecnico> Tecnico { get;set; }
+        public IList<Technician> Technician { get;set; }
         public Admin Admin { get; set; }
 
         public async Task OnGetAsync()
         {
-            Admin = await _context.Admin.Include(m => m.ListaTecnicos)
+            Admin = await _context.Admin.Include(m => m.ListaTechnicians)
             .FirstOrDefaultAsync (m => m.Role == IdentityData.AdminRoleName);
-            foreach (Tecnico t in _context.Tecnicos)
+            foreach (Technician t in _context.Technicians)
             {
                 if (t.Available == true)
                 {
-                    if (!Admin.ListaTecnicos.Contains(t))
+                    if (!Admin.ListaTechnicians.Contains(t))
                     {
-                        Admin.ListaTecnicos.Add(t);
+                        Admin.ListaTechnicians.Add(t);
                     }
                 }
                 else
                 {
-                    if (Admin.ListaTecnicos.Contains(t))
+                    if (Admin.ListaTechnicians.Contains(t))
                     {
-                        Admin.ListaTecnicos.Remove(t);
+                        Admin.ListaTechnicians.Remove(t);
                     }
                 }
             }
-            Tecnico = await _context.Tecnicos.Include(m => m.RoleWorker).ToListAsync();
+            Technician = await _context.Technicians.Include(m => m.RoleWorker).ToListAsync();
             await _context.SaveChangesAsync();
         }
     }

@@ -11,25 +11,25 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ignis.Pages_Contracts
 {
-    public class CreateModel : PageModel
+    public class CreateByHourModel : PageModel
     {
         private readonly Ignis.Areas.Identity.Data.IdentityContext _context;
 
-        public CreateModel(Ignis.Areas.Identity.Data.IdentityContext context)
+        public CreateByHourModel(Ignis.Areas.Identity.Data.IdentityContext context)
         {
             _context = context;
         }
 
         public IActionResult OnGet()
         {
-            Admin = _context.Admin.Include(m => m.ListaTecnicos).ThenInclude(m => m.RoleWorker)
+            Admin = _context.Admin.Include(m => m.ListaTechnicians).ThenInclude(m => m.RoleWorker)
             .FirstOrDefault(m => m.Role == IdentityData.AdminRoleName);
-            ViewData["Tecnico"] = new SelectList(Admin.ListaTecnicos, "Id", "Name");
+            ViewData["Technician"] = new SelectList(Admin.ListaTechnicians, "Id", "Name");
             return Page();
         }
 
         [BindProperty]
-        public Contract Contract { get; set; }
+        public ContractByHour Contract { get; set; }
         public Admin Admin { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
@@ -37,7 +37,7 @@ namespace Ignis.Pages_Contracts
             string ClientName = User.Identity.Name;
             Client client = _context.Clients.FirstOrDefault(m => m.Email == ClientName);
             Contract.ClientId = client.Id;
-            Contract contract = _context.Contract.Find(Contract.ClientId, Contract.TecnicoId);
+            Contract contract = _context.Contract.Find(Contract.ClientId, Contract.TechnicianId);
             if (contract != null)
             {
                 return RedirectToPage("./Index");
@@ -48,9 +48,9 @@ namespace Ignis.Pages_Contracts
                 return Page();
             }
             Contract.Client = _context.Clients.Find(Contract.ClientId);
-            Contract.Tecnico = _context.Tecnicos.Find(Contract.TecnicoId);
+            Contract.Technician = _context.Technicians.Find(Contract.TechnicianId);
             Contract.Client.Contracts.Add(Contract);
-            Contract.Tecnico.Contracts.Add(Contract);
+            Contract.Technician.Contracts.Add(Contract);
             
             _context.Contract.Add(Contract);
             await _context.SaveChangesAsync();

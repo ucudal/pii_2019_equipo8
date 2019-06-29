@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ignis.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20190627203056_InitialCreate")]
+    [Migration("20190629224044_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -103,7 +103,7 @@ namespace Ignis.Migrations
                 {
                     b.Property<string>("ClientId");
 
-                    b.Property<string>("TecnicoId");
+                    b.Property<string>("TechnicianId");
 
                     b.Property<string>("AdminId");
 
@@ -113,13 +113,13 @@ namespace Ignis.Migrations
 
                     b.Property<int>("Time");
 
-                    b.HasKey("ClientId", "TecnicoId");
+                    b.HasKey("ClientId", "TechnicianId");
 
                     b.HasIndex("AdminId");
 
                     b.HasIndex("ClientId1");
 
-                    b.HasIndex("TecnicoId");
+                    b.HasIndex("TechnicianId");
 
                     b.ToTable("Contract");
                 });
@@ -129,7 +129,8 @@ namespace Ignis.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Comment");
+                    b.Property<string>("Comment")
+                        .IsRequired();
 
                     b.Property<int>("Rating");
 
@@ -145,7 +146,7 @@ namespace Ignis.Migrations
 
                     b.Property<int?>("Level");
 
-                    b.Property<string>("TecnicoId");
+                    b.Property<string>("TechnicianId");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -153,7 +154,7 @@ namespace Ignis.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("TecnicoId");
+                    b.HasIndex("TechnicianId");
 
                     b.ToTable("RoleWorker");
                 });
@@ -287,7 +288,7 @@ namespace Ignis.Migrations
                     b.HasDiscriminator().HasValue("Client");
                 });
 
-            modelBuilder.Entity("Ignis.Models.Tecnico", b =>
+            modelBuilder.Entity("Ignis.Models.Technician", b =>
                 {
                     b.HasBaseType("Ignis.Areas.Identity.Data.ApplicationUser");
 
@@ -301,9 +302,9 @@ namespace Ignis.Migrations
 
                     b.HasIndex("AdminId");
 
-                    b.ToTable("Tecnico");
+                    b.ToTable("Technician");
 
-                    b.HasDiscriminator().HasValue("Tecnico");
+                    b.HasDiscriminator().HasValue("Technician");
                 });
 
             modelBuilder.Entity("Ignis.Models.Consults", b =>
@@ -323,17 +324,17 @@ namespace Ignis.Migrations
                         .WithMany("Contracts")
                         .HasForeignKey("ClientId1");
 
-                    b.HasOne("Ignis.Models.Tecnico", "Tecnico")
+                    b.HasOne("Ignis.Models.Technician", "Technician")
                         .WithMany("Contracts")
-                        .HasForeignKey("TecnicoId")
+                        .HasForeignKey("TechnicianId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Ignis.Models.RoleWorker", b =>
                 {
-                    b.HasOne("Ignis.Models.Tecnico")
+                    b.HasOne("Ignis.Models.Technician")
                         .WithMany("RoleWorker")
-                        .HasForeignKey("TecnicoId");
+                        .HasForeignKey("TechnicianId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -381,10 +382,10 @@ namespace Ignis.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Ignis.Models.Tecnico", b =>
+            modelBuilder.Entity("Ignis.Models.Technician", b =>
                 {
                     b.HasOne("Ignis.Areas.Identity.Data.Admin")
-                        .WithMany("ListaTecnicos")
+                        .WithMany("ListaTechnicians")
                         .HasForeignKey("AdminId");
                 });
 #pragma warning restore 612, 618

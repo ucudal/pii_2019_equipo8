@@ -11,7 +11,7 @@ namespace Ignis.Models
     public class Contract
     {
     public virtual int BaseCost { get; set; }
-    public int Time { get; set;}
+    public virtual int Time { get; set; }
     public int TotalCost
     {
         get
@@ -22,9 +22,9 @@ namespace Ignis.Models
     public Client Client { get; set; }
     [Key]
     public string ClientId { get; set; }
-    public Tecnico Tecnico { get; set; }
+    public Technician Technician { get; set; }
     [Key]
-    public string TecnicoId { get; set; }
+    public string TechnicianId { get; set; }
 
     }
  }

@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 //RegisterModel es la clase que se encarga de crear los usuarios y guardarlos en la base de datos.
 //Esta clase cumple con el patrón Creator ya que RegisterModel es un experto con respecto a crear
-//a Client o Tecnico (tiene los datos que serán provistos para crear dichos usuarios) y además los
+//a Client o Technician (tiene los datos que serán provistos para crear dichos usuarios) y además los
 //usa de forma cercana (por ejemplo cuando verifica si el email es correcto)
 namespace Ignis.Areas.Identity.Pages.Account
 {
@@ -83,9 +83,9 @@ namespace Ignis.Areas.Identity.Pages.Account
         }
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            //Aquí tuvimos que preguntar con un if si el rol del usuario es de Tecnico o Client.
+            //Aquí tuvimos que preguntar con un if si el rol del usuario es de Technician o Client.
             //Si bien esto puede ser considerado como "bad smell", decidimos hacerlo de esta forma ya
-            //que la aplicación necesita saber si el usuario que se registra es de tipo Tecnico o Client
+            //que la aplicación necesita saber si el usuario que se registra es de tipo Technician o Client
             //y de esta forma se instancia como uno de esos tipos y no como ApplicationUser.
             returnUrl = returnUrl ?? Url.Content("~/");
             Admin admin = new Admin();
@@ -99,7 +99,7 @@ namespace Ignis.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {   
                 if (Input.Role=="Tecnico"){
-                var user = new Ignis.Models.Tecnico {
+                var user = new Ignis.Models.Technician {
                     Name = Input.Name,
                     DOB = Input.DOB,
                     UserName = Input.Email,
@@ -125,7 +125,7 @@ namespace Ignis.Areas.Identity.Pages.Account
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    admin.ListaTecnicos.Add(user);
+                    admin.ListaTechnicians.Add(user);
                     _context.SaveChanges();
                     return LocalRedirect(returnUrl);
                 }

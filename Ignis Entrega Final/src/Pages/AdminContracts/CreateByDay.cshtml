@@ -1,5 +1,5 @@
 @page
-@model Ignis.Pages_AdminContracts.CreateModel
+@model Ignis.Pages_AdminContracts.CreateByDayModel
 
 @{
     ViewData["Title"] = "Create";
@@ -14,11 +14,6 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Contract.BaseCost" class="control-label"></label>
-                <input asp-for="Contract.BaseCost" class="form-control" />
-                <span asp-validation-for="Contract.BaseCost" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Contract.Time" class="control-label"></label>
                 <input asp-for="Contract.Time" class="form-control" />
                 <span asp-validation-for="Contract.Time" class="text-danger"></span>
@@ -28,8 +23,8 @@
                 <select asp-for="Contract.ClientId" class ="form-control" asp-items="ViewBag.Client"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Contract.TecnicoId" class="control-label"></label>
-                <select asp-for="Contract.TecnicoId" class ="form-control" asp-items="ViewBag.Tecnico"></select>
+                <label asp-for="Contract.TechnicianId" class="control-label"></label>
+                <select asp-for="Contract.TechnicianId" class ="form-control" asp-items="ViewBag.Technician"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
