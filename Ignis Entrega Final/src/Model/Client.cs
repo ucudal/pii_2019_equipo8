@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 //Client es el usuario que tiene el rol del "cliente" en la aplicación que pidió el Centro Ignis.
 //Por lo tanto Client hereda ApplicationUser para que sea un usuario como tal y además definimos las metodos
-//ShowProperties y NamesOfProperties para poder mostrar las propiedades ya que son distintas a las de Tecnico.
+//ShowProperties y NamesOfProperties para poder mostrar las propiedades ya que son distintas a las de Technician.
 namespace Ignis.Models
 {
     public class Client : Ignis.Areas.Identity.Data.ApplicationUser

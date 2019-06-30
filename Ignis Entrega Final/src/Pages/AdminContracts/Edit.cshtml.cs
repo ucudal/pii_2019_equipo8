@@ -23,15 +23,15 @@ namespace Ignis.Pages_AdminContracts
         [BindProperty]
         public Contract Contract { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string id)
+        public async Task<IActionResult> OnGetAsync(string id1, string id2)
         {
-            if (id == null)
+            if (id1 == null || id2 == null)
             {
                 return NotFound();
             }
 
-            Contract = await _context.Contract
-                .Include(c => c.Tecnico).Include(c => c.Client).FirstOrDefaultAsync(m => m.ClientId == id);
+            Contract = await _context.Contract.Include(c => c.Technician).Include(c => c.Client)
+            .FirstOrDefaultAsync(m => (m.ClientId == id1 & m.TechnicianId == id2));
 
             if (Contract == null)
             {

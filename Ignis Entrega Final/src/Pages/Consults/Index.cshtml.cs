@@ -26,7 +26,7 @@ namespace Ignis.Pages_Consults
         {
             string AdminEmail = User.Identity.Name;
 
-            Admin = await _context.Admin.Include(m => m.Consults).Include(m => m.ListaTecnicos)
+            Admin = await _context.Admin.Include(m => m.Consults).Include(m => m.ListaTechnicians)
             .FirstOrDefaultAsync(m => m.Email == AdminEmail);
 
             foreach(Consults c in Admin.Consults)

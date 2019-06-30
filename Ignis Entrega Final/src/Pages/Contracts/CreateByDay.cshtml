@@ -1,0 +1,68 @@
+@page
+@model Ignis.Pages_Contracts.CreateByDayModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Contract</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Contract.Time" class="control-label"></label>
+                <input asp-for="Contract.Time" class="form-control" />
+                <span asp-validation-for="Contract.Time" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contract.TechnicianId" class="control-label"></label>
+                <select asp-for="Contract.TechnicianId" class ="form-control" asp-items="ViewBag.Technician"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Roles
+            </th>
+            <th>
+                Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Admin.ListaTechnicians) {
+        <tr>
+            <td>
+                @foreach (var i in item.RoleWorker)
+                {
+                    <dd>
+                        @Html.DisplayFor(modelItem => i.Title)
+                    </dd>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

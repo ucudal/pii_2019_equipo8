@@ -23,15 +23,15 @@ namespace Ignis.Pages_Contracts
         [BindProperty]
         public Feedback Feedback { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string id)
+        public async Task<IActionResult> OnGetAsync(string id1, string id2)
         {
-            if (id == null)
+            if (id1 == null || id2 == null)
             {
                 return NotFound();
             }
 
-            Contract = await _context.Contract.Include(m => m.Tecnico).Include(m => m.Client)
-            .FirstOrDefaultAsync(m => m.ClientId == id);
+            Contract = await _context.Contract.Include(m => m.Technician).Include(m => m.Client)
+            .FirstOrDefaultAsync(m => (m.ClientId == id1 & m.TechnicianId == id2));
 
             if (Contract == null)
             {
@@ -40,23 +40,19 @@ namespace Ignis.Pages_Contracts
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(string id)
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            Contract = await _context.Contract.Include(m => m.Tecnico)
-            .FirstOrDefaultAsync(m => m.ClientId == id);
+            Contract = await _context.Contract.Include(m => m.Technician)
+            .FirstOrDefaultAsync(m => (m.ClientId == Contract.ClientId & m.TechnicianId == Contract.TechnicianId));
             
-            Contract.Tecnico.TotalWorks = Contract.Tecnico.TotalWorks + 1;
-            Contract.Tecnico.TotalPoints = Contract.Tecnico.TotalPoints + Feedback.Rating;
+            Contract.Technician.TotalWorks = Contract.Technician.TotalWorks + 1;
+            Contract.Technician.TotalPoints = Contract.Technician.TotalPoints + Feedback.Rating;
 
             if (Contract != null)
             {

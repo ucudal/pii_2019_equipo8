@@ -21,7 +21,7 @@ namespace Ignis.Pages_TechnicianList
         }
 
         [BindProperty]
-        public Tecnico Tecnico { get; set; }
+        public Technician Technician { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -30,9 +30,9 @@ namespace Ignis.Pages_TechnicianList
                 return NotFound();
             }
 
-            Tecnico = await _context.Tecnicos.FirstOrDefaultAsync(m => m.Id == id);
+            Technician = await _context.Technicians.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Tecnico == null)
+            if (Technician == null)
             {
                 return NotFound();
             }
@@ -46,7 +46,7 @@ namespace Ignis.Pages_TechnicianList
                 return Page();
             }
 
-            _context.Attach(Tecnico).State = EntityState.Modified;
+            _context.Attach(Technician).State = EntityState.Modified;
             
             try
             {
@@ -54,7 +54,7 @@ namespace Ignis.Pages_TechnicianList
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TecnicoExists(Tecnico.Id))
+                if (!TechnicianExists(Technician.Id))
                 {
                     return NotFound();
                 }
@@ -67,9 +67,9 @@ namespace Ignis.Pages_TechnicianList
             return RedirectToPage("./Index");
         }
 
-        private bool TecnicoExists(string id)
+        private bool TechnicianExists(string id)
         {
-            return _context.Tecnicos.Any(e => e.Id == id);
+            return _context.Technicians.Any(e => e.Id == id);
         }
     }
 }

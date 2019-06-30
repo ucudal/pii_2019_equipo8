@@ -24,7 +24,7 @@ namespace Ignis.Pages.AssignRoles
         }
 
         [BindProperty]
-        public Tecnico Tecnico { get; set; }
+        public Technician Technician { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -33,7 +33,7 @@ namespace Ignis.Pages.AssignRoles
                 return Page();
             }
 
-            _context.Tecnicos.Add(Tecnico);
+            _context.Technicians.Add(Technician);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

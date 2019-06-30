@@ -16,9 +16,9 @@ namespace Ignis.Areas.Identity.Data
             appUser.Id ="1234";
             appUser.Name = "Juan Perez";
             appUser.DOB = new DateTime(1988, 12, 11);
-            appUser.Role = "Tecnico";
+            appUser.Role = "Technician";
             string actual = string.Format(@"{0} {1} {2} {3}", appUser.Id, appUser.Name, appUser.DOB.ToString("dd/MM/yyyy"), appUser.Role);
-            string expected = "1234 Juan Perez 11/12/1988 Tecnico";
+            string expected = "1234 Juan Perez 11/12/1988 Technician";
             Assert.Equal(expected, actual);
         }
 
@@ -38,10 +38,10 @@ namespace Ignis.Areas.Identity.Data
         }
 
         [Fact]
-        //Se verifica la creacion de un Tecnico
-        public void TestTecnico()
+        //Se verifica la creacion de un Technician
+        public void TestTechnician()
         {
-            Tecnico tec1 = new Tecnico();
+            Technician tec1 = new Technician();
             tec1.Available = true;
             tec1.AverageRanking = 4;
             tec1.TotalPoints = 40;

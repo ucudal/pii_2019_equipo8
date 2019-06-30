@@ -18,6 +18,6 @@ namespace Ignis.Areas.Identity.Data
 
         public const string AdminRoleName = "Administrator";
 
-        public static string[] NonAdminRoleNames = new string[] { "Cliente", "Tecnico" };
+        public static string[] NonAdminRoleNames = new string[] { "Cliente", "Technician" };
     }
 }
