@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 namespace Ignis.Pages.AssignRoles
 {
-    public class EditModel : TechnicianWorkerRolePageModel
+    public class EditModel : TecnicoWorkerRolePageModel
     {
 
         private readonly Ignis.Areas.Identity.Data.IdentityContext _context;
@@ -27,7 +27,7 @@ namespace Ignis.Pages.AssignRoles
         }
 
         [BindProperty]
-        public Technician Technician { get; set; }
+        public Technician Tecnico { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -37,16 +37,16 @@ namespace Ignis.Pages.AssignRoles
                 return NotFound();
             }
 
-           Technician = await _context.Technicians
-            .Include(i => i.RoleWorker)
+           Tecnico = await _context.Technicians
+            .Include(i => i.WorkersWithRole).ThenInclude(i => i.RoleWorker)
             .AsNoTracking()
             .FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Technician == null)
+            if (Tecnico == null)
             {
                 return NotFound();
             }
-            PopulateAssignedCourseData(_context, Technician);
+            PopulateAssignedCourseData(_context, Tecnico);
             return Page();
         }
 
@@ -58,12 +58,13 @@ namespace Ignis.Pages.AssignRoles
             }
 
             var instructorToUpdate = await _context.Technicians
-                    .Include(i => i.RoleWorker)
+                .Include(i => i.WorkersWithRole)
+                    .ThenInclude(i => i.RoleWorker)
                 .FirstOrDefaultAsync(s => s.Id == id);
             if (await TryUpdateModelAsync<Technician>(
                 instructorToUpdate,
-                "Technician",
-                i => i.Name,i => i.RoleWorker))
+                "Tecnico",
+                i => i.Name,i => i.WorkersWithRole))
             {
                 UpdateInstructorCourses(_context, selectedCourses, instructorToUpdate);
                 await _context.SaveChangesAsync();

@@ -18,5 +18,8 @@ namespace Ignis.Models
         public string Title { get; set; }
 
         public Level? Level { get; set; }
+
+        public IList<WorkersWithRole> WorkersWithRole { get; set; }
+
     }
 }

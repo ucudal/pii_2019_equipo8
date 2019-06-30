@@ -22,7 +22,7 @@ namespace Ignis.Pages_Contracts
 
         public IActionResult OnGet()
         {
-            Admin = _context.Admin.Include(m => m.ListaTechnicians).ThenInclude(m => m.RoleWorker)
+            Admin = _context.Admin.Include(m => m.ListaTechnicians).ThenInclude(m => m.WorkersWithRole)
             .FirstOrDefault(m => m.Role == IdentityData.AdminRoleName);
             ViewData["Technician"] = new SelectList(Admin.ListaTechnicians, "Id", "Name");
             return Page();

@@ -9,7 +9,9 @@ namespace Ignis.Models.RoleWorkerViewModel
     {
     public IEnumerable<RoleWorker> RoleWorkers { get; set; }
 
-        public IEnumerable<Technician> Technicians { get; set; }
+    public IEnumerable<Technician> Technicians { get; set; }
+    public IEnumerable<WorkersWithRole> WorkerWithRole { get; set; }
+
 
     }
 }

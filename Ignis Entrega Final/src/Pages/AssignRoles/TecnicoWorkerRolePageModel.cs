@@ -7,17 +7,17 @@ using Ignis.Models;
 
 namespace Ignis.Pages.AssignRoles
 {
-    public class TechnicianWorkerRolePageModel : PageModel
+    public class TecnicoWorkerRolePageModel : PageModel
     {
 
         public List<AssignedRoleData> AssignedRoleDataList;
 
         public void PopulateAssignedCourseData(Ignis.Areas.Identity.Data.IdentityContext context, 
-                                               Technician Technician)
+                                               Technician tecnico)
         {
             var allRoles = context.RoleWorker;
-            var TechnicianRoles = new HashSet<int>(
-                Technician.RoleWorker.Select(c => c.ID));
+            var tecnicoRoles = new HashSet<int>(
+                tecnico.WorkersWithRole.Select(c => c.RoleWorkerID));
             AssignedRoleDataList = new List<AssignedRoleData>();
             foreach (var course in allRoles)
             {
@@ -26,7 +26,7 @@ namespace Ignis.Pages.AssignRoles
                     RoleWorkerID = course.ID,
                     Title = course.Title,
                     
-                    Assigned = TechnicianRoles.Contains(course.ID)
+                    Assigned = tecnicoRoles.Contains(course.ID)
                 });
             }
         }
@@ -36,27 +36,36 @@ namespace Ignis.Pages.AssignRoles
         {
             if (selectedCourses == null)
             {
-                instructorToUpdate.RoleWorker = new List<RoleWorker>();
+                instructorToUpdate.WorkersWithRole = new List<WorkersWithRole>();
                 return;
             }
 
             var selectedCoursesHS = new HashSet<string>(selectedCourses);
             var instructorCourses = new HashSet<int>
-                (instructorToUpdate.RoleWorker.Select(c => c.ID));
+                (instructorToUpdate.WorkersWithRole.Select(c => c.RoleWorker.ID));
             foreach (var course in context.RoleWorker)
             {
                 if (selectedCoursesHS.Contains(course.ID .ToString()))
                 {
                     if (!instructorCourses.Contains(course.ID))
                     {
-                        instructorToUpdate.RoleWorker.Add(course);
+                        instructorToUpdate.WorkersWithRole.Add(
+                            new WorkersWithRole
+                            {
+                               TechnicianID = instructorToUpdate.Id,
+                               RoleWorkerID = course.ID
+                            });
                     }
                 }
                 else
                 {
                     if (instructorCourses.Contains(course.ID))
                     {
-                        instructorToUpdate.RoleWorker.Remove(course);
+                        Models.WorkersWithRole courseToRemove
+                            = instructorToUpdate
+                                .WorkersWithRole
+                                .SingleOrDefault(i => i.RoleWorkerID == course.ID);
+                        context.Remove(courseToRemove);
                     }
                 }
             }

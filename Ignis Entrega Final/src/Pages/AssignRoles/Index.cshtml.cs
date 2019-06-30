@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace Ignis.Pages.AssignRoles
 {
-    //[Authorize(Roles="Technician")]
+    //[Authorize(Roles="Tecnico")]
     public class IndexModel : PageModel
     {
 
@@ -29,27 +29,28 @@ namespace Ignis.Pages.AssignRoles
             _context = context;
         }
         public int WorkerRoleID { get; set; }
-        public string TechnicianID { get; set; }
-        public RoleWorkerIndexData Technician { get; set; }
+        public string TecnicoID { get; set; }
+        public RoleWorkerIndexData tecnico { get; set; }
 
 
 
 
-        public List<String> Properties { get; set; }
-        public List<String> NamesOfProperties { get; set; }
-        public ApplicationUser ApplicationUser { get; set; }
+        public List<String> Properties {get; set;}
+        public List<String> NamesOfProperties {get; set;}
+        public ApplicationUser ApplicationUser{get;set;}
 
 
         public async Task OnGetAsync(string id, int? courseID)
         {            
             // //Acá estan las 2 operaciones polimórficas, las cuales cumplen con el principio
-            // //LSP ya que al sustituir ApplicationUser por Client o Technician no se encuentran efectos
+            // //LSP ya que al sustituir ApplicationUser por Client o Tecnico no se encuentran efectos
             // //colaterales. Un ejemplo de efecto colateral puede ser que alla una propiedad que valga
             // //null.
             
-            Technician = new RoleWorkerIndexData();
-            Technician.Technicians= await _context.Technicians
-                .Include(i=> i.RoleWorker)
+            tecnico = new RoleWorkerIndexData();
+            tecnico.Technicians= await _context.Technicians
+            .Include(i => i.WorkersWithRole)
+                .ThenInclude(i=> i.RoleWorker)
                 .OrderBy(i=>i.Name)
                 .ToListAsync();
             

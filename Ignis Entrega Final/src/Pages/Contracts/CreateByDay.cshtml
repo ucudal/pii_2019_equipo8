@@ -44,10 +44,10 @@
 @foreach (var item in Model.Admin.ListaTechnicians) {
         <tr>
             <td>
-                @foreach (var i in item.RoleWorker)
+                @foreach (var i in item.WorkersWithRole)
                 {
                     <dd>
-                        @Html.DisplayFor(modelItem => i.Title)
+                        @Html.DisplayFor(modelItem => i.RoleWorker.Title)
                     </dd>
                 }
             </td>
