@@ -25,12 +25,16 @@ namespace Ignis.Areas.Identity.Data
             builder.Entity<Contract>().HasKey(t => new {t.ClientId, t.TechnicianId});
             builder.Entity<Admin>().ToTable("Admin");
             builder.Entity<Admin>().ToTable("Feedback");
+            builder.Entity<WorkersWithRole>().ToTable("WorkersWithRole");
+
+            builder.Entity<WorkersWithRole>().HasKey(a => new { a.RoleWorkerID, a.TechnicianID});
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
             public DbSet<Technician> Technicians { get; set; }
             public DbSet<Feedback> Feedbacks { get; set; }
+            public DbSet<WorkersWithRole> WorkersWithRole {get; set;}
             public DbSet<Admin> Admin { get; set; }
             public DbSet<Client> Clients { get; set; }
             public DbSet<Contract> Contract { get; set; }

@@ -30,8 +30,7 @@ namespace Ignis.Models
         public bool Available { get; set; }
         public int TotalPoints { get; set; }
         public int TotalWorks { get; set; }
-        public IList<RoleWorker> RoleWorker { get; set; } = new List<RoleWorker>();
-        [NotMapped]
+        public IList<WorkersWithRole> WorkersWithRole { get; set; } = new List<WorkersWithRole>();
         public override ICollection<Property> Properties {
             get
             {
@@ -43,9 +42,9 @@ namespace Ignis.Models
                     new Property { Name = "TotalWorks", Value = this.TotalWorks.ToString() }
                 };
                 string roles = "";
-                foreach(RoleWorker r in this.RoleWorker)
+                foreach(WorkersWithRole r in this.WorkersWithRole)
                 {
-                    roles = roles + r.Title + ", ";
+                    roles = roles + r.RoleWorker.Title + ", ";
                 }
                 result.Add(new Property { Name = "Roles", Value = roles });
                 return result;

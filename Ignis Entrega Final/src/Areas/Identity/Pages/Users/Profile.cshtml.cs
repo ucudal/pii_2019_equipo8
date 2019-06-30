@@ -39,7 +39,7 @@ namespace Ignis.Areas.Identity.Pages.Users
                 return NotFound();
             }
             ApplicationUser = await _context.Users.Include(m => m.Contracts).FirstOrDefaultAsync(m => m.Id == id);
-            Technician t = await _context.Technicians.Include(r => r.RoleWorker)
+            Technician t = await _context.Technicians.Include(r => r.WorkersWithRole).ThenInclude(r => r.RoleWorker)
             .FirstOrDefaultAsync(m => m.Id == id);
             if (t != null)
             {

@@ -20,9 +20,6 @@
                 Available
             </th>
             <th>
-                TotalPoints
-            </th>
-            <th>
                 TotalWorks
             </th>
             <th>
@@ -35,9 +32,9 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Technician.Technicians) {
+@foreach (var item in Model.tecnico.Technicians) {
      string selectedRow = "";
-            if (item.Id == Model.TechnicianID)
+            if (item.Id == Model.TecnicoID)
             {
                 selectedRow = "success";
             }
@@ -49,9 +46,6 @@
                 @Html.DisplayFor(modelItem => item.Available)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TotalPoints)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.TotalWorks)
             </td>
             <td>
@@ -59,9 +53,9 @@
             </td>
             <td>
                     @{
-                        foreach (var role in item.RoleWorker)
+                        foreach (var role in item.WorkersWithRole)
                         {
-                            @role.ID @:  @role.Title <br />
+                            @role.RoleWorker.ID @:  @role.RoleWorker.Title <br />
                         }
                     }
             </td>

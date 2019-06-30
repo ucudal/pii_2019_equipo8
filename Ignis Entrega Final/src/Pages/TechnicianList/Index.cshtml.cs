@@ -43,7 +43,7 @@ namespace Ignis.Pages_TechnicianList
                     }
                 }
             }
-            Technician = await _context.Technicians.Include(m => m.RoleWorker).ToListAsync();
+            Technician = await _context.Technicians.Include(m => m.WorkersWithRole).ThenInclude(m => m.RoleWorker).ToListAsync();
             await _context.SaveChangesAsync();
         }
     }

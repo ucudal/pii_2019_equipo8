@@ -14,7 +14,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Technician[0].RoleWorker)
+                @Html.DisplayNameFor(model => model.Technician[0].WorkersWithRole)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Technician[0].AverageRanking)
@@ -41,10 +41,10 @@
 @foreach (var item in Model.Technician) {
         <tr>
             <td>
-                @foreach (var i in item.RoleWorker)
+                @foreach (var i in item.WorkersWithRole)
                 {
                     <dd>
-                        @Html.DisplayFor(modelItem => i.Title)
+                        @Html.DisplayFor(modelItem => i.RoleWorker.Title)
                     </dd>
                 }
             </td>
