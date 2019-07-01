@@ -134,7 +134,7 @@ namespace Ignis.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Feedbacks");
+                    b.ToTable("Feedback");
                 });
 
             modelBuilder.Entity("Ignis.Models.RoleWorker", b =>
@@ -281,7 +281,7 @@ namespace Ignis.Migrations
                 {
                     b.HasBaseType("Ignis.Areas.Identity.Data.ApplicationUser");
 
-                    b.ToTable("Feedback");
+                    b.ToTable("Admin");
 
                     b.HasDiscriminator().HasValue("Admin");
                 });

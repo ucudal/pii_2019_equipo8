@@ -1,0 +1,39 @@
+@page
+@model Ignis.Pages_ViewProfile.ProfileModel
+
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<h1>Profile</h1>
+
+<!-- <p>
+    <a asp-page="Create">Create New</a>
+</p> -->
+<table class="table">
+    <thead>
+        <tr>
+@foreach(var item in Model.ApplicationUser.Properties){
+
+            <th>
+                @Html.DisplayFor(Model => item.Name )
+            </th>
+}
+        </tr>
+
+
+       
+    </thead>
+    <tbody>
+        <tr>
+             @foreach (var item in Model.ApplicationUser.Properties) { 
+        <td>
+          
+         @Html.DisplayFor(Model => item.Value )
+
+        </td>
+        }
+
+    </tbody>
+</table>
+</table>

@@ -23,7 +23,7 @@ namespace Ignis.Pages_Contracts
         public IActionResult OnGet()
         {
             Admin = _context.Admin.Include(m => m.ListaTechnicians).ThenInclude(m => m.WorkersWithRole)
-            .FirstOrDefault(m => m.Role == IdentityData.AdminRoleName);
+            .ThenInclude(m => m.RoleWorker).FirstOrDefault(m => m.Role == IdentityData.AdminRoleName);
             ViewData["Technician"] = new SelectList(Admin.ListaTechnicians, "Id", "Name");
             return Page();
         }
@@ -37,10 +37,15 @@ namespace Ignis.Pages_Contracts
             string ClientName = User.Identity.Name;
             Client client = _context.Clients.FirstOrDefault(m => m.Email == ClientName);
             Contract.ClientId = client.Id;
-            Contract contract = _context.Contract.Find(Contract.ClientId, Contract.TechnicianId);
-            if (contract != null)
+            Contract contract = _context.Contract
+            .FirstOrDefault(m => m.TechnicianId == Contract.TechnicianId);
+            try
             {
-                return RedirectToPage("./Index");
+                Check.Precondition(contract == null, "El tecnico ya tiene un contrato");
+            }
+            catch (Check.PreconditionException ex)
+            {
+                return Redirect("https://localhost:5001/Exception/Exception?id=" + ex.Message);
             }
 
             if (!ModelState.IsValid)

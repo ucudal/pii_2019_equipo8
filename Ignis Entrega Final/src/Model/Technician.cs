@@ -30,15 +30,15 @@ namespace Ignis.Models
         public bool Available { get; set; }
         public int TotalPoints { get; set; }
         public int TotalWorks { get; set; }
+        [Display(Name = "Roles")]
         public IList<WorkersWithRole> WorkersWithRole { get; set; } = new List<WorkersWithRole>();
         public override ICollection<Property> Properties {
             get
             {
                 ICollection<Property> result = new List<Property>
                 {
-                    new Property { Name = "AverageRanking", Value = this.AverageRanking.ToString() },
+                    new Property { Name =  "Name", Value = this.Name },
                     new Property { Name = "Available", Value = this.Available.ToString() },
-                    new Property { Name = "TotalPoints", Value = this.TotalPoints.ToString() },
                     new Property { Name = "TotalWorks", Value = this.TotalWorks.ToString() }
                 };
                 string roles = "";
