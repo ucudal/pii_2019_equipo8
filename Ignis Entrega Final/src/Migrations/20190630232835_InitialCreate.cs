@@ -62,7 +62,7 @@ namespace Ignis.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Feedbacks",
+                name: "Feedback",
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false)
@@ -72,7 +72,7 @@ namespace Ignis.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Feedbacks", x => x.ID);
+                    table.PrimaryKey("PK_Feedback", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -365,7 +365,7 @@ namespace Ignis.Migrations
                 name: "Contract");
 
             migrationBuilder.DropTable(
-                name: "Feedbacks");
+                name: "Feedback");
 
             migrationBuilder.DropTable(
                 name: "WorkersWithRole");

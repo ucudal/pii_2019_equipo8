@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ignis.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20190629224044_InitialCreate")]
+    [Migration("20190630232835_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -136,7 +136,7 @@ namespace Ignis.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Feedbacks");
+                    b.ToTable("Feedback");
                 });
 
             modelBuilder.Entity("Ignis.Models.RoleWorker", b =>
@@ -146,17 +146,26 @@ namespace Ignis.Migrations
 
                     b.Property<int?>("Level");
 
-                    b.Property<string>("TechnicianId");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(60);
 
                     b.HasKey("ID");
 
-                    b.HasIndex("TechnicianId");
-
                     b.ToTable("RoleWorker");
+                });
+
+            modelBuilder.Entity("Ignis.Models.WorkersWithRole", b =>
+                {
+                    b.Property<int>("RoleWorkerID");
+
+                    b.Property<string>("TechnicianID");
+
+                    b.HasKey("RoleWorkerID", "TechnicianID");
+
+                    b.HasIndex("TechnicianID");
+
+                    b.ToTable("WorkersWithRole");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -274,7 +283,7 @@ namespace Ignis.Migrations
                 {
                     b.HasBaseType("Ignis.Areas.Identity.Data.ApplicationUser");
 
-                    b.ToTable("Feedback");
+                    b.ToTable("Admin");
 
                     b.HasDiscriminator().HasValue("Admin");
                 });
@@ -330,11 +339,17 @@ namespace Ignis.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Ignis.Models.RoleWorker", b =>
+            modelBuilder.Entity("Ignis.Models.WorkersWithRole", b =>
                 {
-                    b.HasOne("Ignis.Models.Technician")
-                        .WithMany("RoleWorker")
-                        .HasForeignKey("TechnicianId");
+                    b.HasOne("Ignis.Models.RoleWorker", "RoleWorker")
+                        .WithMany("WorkersWithRole")
+                        .HasForeignKey("RoleWorkerID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Ignis.Models.Technician", "Technician")
+                        .WithMany("WorkersWithRole")
+                        .HasForeignKey("TechnicianID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

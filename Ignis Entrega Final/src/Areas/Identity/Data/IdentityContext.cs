@@ -24,7 +24,7 @@ namespace Ignis.Areas.Identity.Data
             builder.Entity<Client>().ToTable("Client");
             builder.Entity<Contract>().HasKey(t => new {t.ClientId, t.TechnicianId});
             builder.Entity<Admin>().ToTable("Admin");
-            builder.Entity<Admin>().ToTable("Feedback");
+            builder.Entity<Feedback>().ToTable("Feedback");
             builder.Entity<WorkersWithRole>().ToTable("WorkersWithRole");
 
             builder.Entity<WorkersWithRole>().HasKey(a => new { a.RoleWorkerID, a.TechnicianID});
@@ -34,7 +34,7 @@ namespace Ignis.Areas.Identity.Data
         }
             public DbSet<Technician> Technicians { get; set; }
             public DbSet<Feedback> Feedbacks { get; set; }
-            public DbSet<WorkersWithRole> WorkersWithRole {get; set;}
+            public DbSet<WorkersWithRole> WorkersWithRole { get; set; }
             public DbSet<Admin> Admin { get; set; }
             public DbSet<Client> Clients { get; set; }
             public DbSet<Contract> Contract { get; set; }

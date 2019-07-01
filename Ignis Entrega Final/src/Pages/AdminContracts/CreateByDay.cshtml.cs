@@ -31,10 +31,15 @@ namespace Ignis.Pages_AdminContracts
 
         public async Task<IActionResult> OnPostAsync()
         {
-            Contract contract = _context.Contract.Find(Contract.ClientId, Contract.TechnicianId);
-            if (contract != null)
+            Contract contract = _context.Contract
+            .FirstOrDefault(m => m.TechnicianId == Contract.TechnicianId);
+            try
             {
-                return RedirectToPage("./Index");
+                Check.Precondition(contract == null, "El tecnico ya tiene un contrato");
+            }
+            catch (Check.PreconditionException ex)
+            {
+                return Redirect("https://localhost:5001/Exception/Exception?id=" + ex.Message);
             }
 
             if (!ModelState.IsValid)

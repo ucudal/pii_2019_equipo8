@@ -67,6 +67,15 @@ namespace Ignis.Pages.AssignRoles
                 i => i.Name,i => i.WorkersWithRole))
             {
                 UpdateInstructorCourses(_context, selectedCourses, instructorToUpdate);
+                try
+                {
+                    Check.Postcondition(instructorToUpdate.WorkersWithRole.Count <= 3,
+                    "El tecnico no puede tener mas de 3 roles");
+                }
+                catch (Check.PostconditionException ex)
+                {
+                    return Redirect("https://localhost:5001/Exception/Exception?id=" + ex.Message);
+                }
                 await _context.SaveChangesAsync();
                 
                 return RedirectToPage("./Index");

@@ -22,9 +22,13 @@ namespace Ignis.Pages.VerRoles
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
+            try
             {
-                return NotFound();
+                Check.Precondition(id != null, "La pagina no se encontro");
+            }
+            catch (Check.PreconditionException ex)
+            {
+                return Redirect("https://localhost:5001/Exception/Exception?id=" + ex.Message);
             }
 
             RoleWorker = await _context.RoleWorker.FirstOrDefaultAsync(m => m.ID == id);
