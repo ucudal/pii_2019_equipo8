@@ -43,17 +43,18 @@
     <tbody>
 @foreach (var item in Model.Admin.ListaTechnicians) {
         <tr>
-            <td>
+        <td>                            
                 @foreach (var i in item.WorkersWithRole)
                 {
                     <dd>
                         @Html.DisplayFor(modelItem => i.RoleWorker.Title)
                     </dd>
                 }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>        
+        </td>
+            
         </tr>
 }
     </tbody>

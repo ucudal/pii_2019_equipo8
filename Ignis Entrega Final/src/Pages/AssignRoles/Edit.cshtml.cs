@@ -6,19 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Ignis.Models;
-using Ignis.Models.RoleWorkerViewModel;
 using Ignis.Areas.Identity.Data;
-using Microsoft.AspNetCore.Authorization;
-using System.ComponentModel.DataAnnotations;
-using System.Text.Encodings.Web;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
-namespace Ignis.Pages.AssignRoles
-{
-    public class EditModel : TecnicoWorkerRolePageModel
-    {
+using Ignis.Models;
 
+namespace Ignis.Pages_AssignRoles
+{
+    public class EditModel : PageModel
+    {
         private readonly Ignis.Areas.Identity.Data.IdentityContext _context;
 
         public EditModel(Ignis.Areas.Identity.Data.IdentityContext context)
@@ -27,64 +21,55 @@ namespace Ignis.Pages.AssignRoles
         }
 
         [BindProperty]
-        public Technician Tecnico { get; set; }
+        public Technician Technician { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
-            
             if (id == null)
             {
                 return NotFound();
             }
 
-           Tecnico = await _context.Technicians
-            .Include(i => i.WorkersWithRole).ThenInclude(i => i.RoleWorker)
-            .AsNoTracking()
-            .FirstOrDefaultAsync(m => m.Id == id);
+            Technician = await _context.Technicians.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Tecnico == null)
+            if (Technician == null)
             {
                 return NotFound();
             }
-            PopulateAssignedCourseData(_context, Tecnico);
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(string id ,string[] selectedCourses)
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            var instructorToUpdate = await _context.Technicians
-                .Include(i => i.WorkersWithRole)
-                    .ThenInclude(i => i.RoleWorker)
-                .FirstOrDefaultAsync(s => s.Id == id);
-            if (await TryUpdateModelAsync<Technician>(
-                instructorToUpdate,
-                "Tecnico",
-                i => i.Name,i => i.WorkersWithRole))
-            {
-                UpdateInstructorCourses(_context, selectedCourses, instructorToUpdate);
-                try
-                {
-                    Check.Postcondition(instructorToUpdate.WorkersWithRole.Count <= 3,
-                    "El tecnico no puede tener mas de 3 roles");
-                }
-                catch (Check.PostconditionException ex)
-                {
-                    return Redirect("https://localhost:5001/Exception/Exception?id=" + ex.Message);
-                }
-                await _context.SaveChangesAsync();
-                
-                return RedirectToPage("./Index");
-            }
-            UpdateInstructorCourses(_context, selectedCourses, instructorToUpdate);
-            PopulateAssignedCourseData(_context, instructorToUpdate);
+            _context.Attach(Technician).State = EntityState.Modified;
             
-            return Page();
-           
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TechnicianExists(Technician.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return RedirectToPage("./Index");
+        }
+
+        private bool TechnicianExists(string id)
+        {
+            return _context.Technicians.Any(e => e.Id == id);
         }
     }
 }
