@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ignis.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20190630232835_InitialCreate")]
+    [Migration("20190702140321_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

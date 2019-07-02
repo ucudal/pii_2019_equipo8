@@ -50,9 +50,18 @@ namespace Ignis.Pages_AdminContracts
             Contract.Technician = _context.Technicians.Find(Contract.TechnicianId);
             Contract.Client.Contracts.Add(Contract);
             Contract.Technician.Contracts.Add(Contract);
-            
+            int TotalContracts = _context.Contract.Count();
             _context.Contract.Add(Contract);
             await _context.SaveChangesAsync();
+            try
+            {
+                Check.Postcondition(_context.Contract.Count() == TotalContracts + 1,
+                "El contrato no se añadio a la base de datos");
+            }
+            catch (Check.PostconditionException ex)
+            {
+                return Redirect("https://localhost:5001/Exception/Exception?id=" + ex.Message);
+            }
 
             return RedirectToPage("./Index");
         }

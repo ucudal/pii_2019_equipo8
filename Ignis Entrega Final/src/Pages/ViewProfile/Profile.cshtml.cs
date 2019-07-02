@@ -18,7 +18,7 @@ namespace Ignis.Pages_ViewProfile
         {
             _context = context;
         }
-        public ApplicationUser ApplicationUser { get;set; }
+        public ApplicationUser ApplicationUser { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
         {

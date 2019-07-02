@@ -36,12 +36,6 @@ namespace Ignis.Pages.AssignRoles
         public RoleWorkerIndexData tecnico { get; set; }
 
 
-
-
-        public List<String> Properties {get; set;}
-        public List<String> NamesOfProperties {get; set;}
-        public ApplicationUser ApplicationUser{get;set;}
-
         public async Task OnGetAsync(string id, int? courseID,string searchString)
         {
             

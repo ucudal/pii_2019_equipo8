@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
 //Technician es el usuario que tiene el rol del "técnico" en la aplicación que pidió el Centro Ignis.
-//Por lo tanto Client Technician ApplicationUser para que sea un usuario como tal y además definimos las metodos
-//ShowProperties y NamesOfProperties para poder mostrar las propiedades ya que son distintas a las de Technician.
+//Por lo tanto Technician hereda de ApplicationUser para que  sea un usuario como tal 
+//y además definimos la propiedad Properties la cual muestra las propiedades específicas del
+//tecnico.
 namespace Ignis.Models
 {
     public class Technician : Ignis.Areas.Identity.Data.ApplicationUser
@@ -51,6 +52,15 @@ namespace Ignis.Models
                 result.Add(new Property { Name = "Roles", Value = roles });
                 return result;
             }    
+        }
+        //Aquí aplicamos el principio Dependency Inversion por que Technician ya
+        //no depende de Feedback sino que depende de una abstracción.
+        public void CalculateRanking(IBaseFeedback feedback)
+        {
+            //El Feedback no puede valer null
+            Check.Precondition(feedback != null, "El Feedback no se escribio");
+            this.TotalWorks++;
+            this.TotalPoints += feedback.Rating;
         }
         
  
