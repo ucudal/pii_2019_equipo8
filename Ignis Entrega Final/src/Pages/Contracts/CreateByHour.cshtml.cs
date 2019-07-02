@@ -35,10 +35,17 @@ namespace Ignis.Pages_Contracts
         public async Task<IActionResult> OnPostAsync()
         {
             string ClientName = User.Identity.Name;
+
             Client client = _context.Clients.FirstOrDefault(m => m.Email == ClientName);
+
             Contract.ClientId = client.Id;
+
             Contract contract = _context.Contract
             .FirstOrDefault(m => m.TechnicianId == Contract.TechnicianId);
+
+            //El tecnico no debería estar en más de un proyecto, asi que implementamos esta
+            //excepción para que cuando se quiera crear un contrato con un tecnico, que se 
+            //verifique que dicho tecnico esté libre
             try
             {
                 Check.Precondition(contract == null, "El tecnico ya tiene un contrato");

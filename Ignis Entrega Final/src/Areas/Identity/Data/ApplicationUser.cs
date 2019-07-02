@@ -6,16 +6,16 @@ using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Ignis.Models;
-//ApplicationUser es la clase de los usuarios por lo tanto es sucesora de IdentityUser. Aquí aplicamos
-//el principio OCP ya que ApplicationUser es nuestra clase abierta a la extensión (Le podemos agregar nuevas 
-//responsanilidades por ejemplo ShowProperties o NameOfProperties) y las sucesoras las cuales son
-//Client y Technician son clases cerradas a la modificación es decir, no modificamos su comportamiento.
 
 namespace Ignis.Areas.Identity.Data
 {
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser
     {
+        //Definimos la inner class Property y la lista Properties para que en los sucesores
+        //de ApplicationUser, los cuales son Client y Technician, puedan agregar a la lista
+        //sus propiedades específicas y en los controladores poder preguntar por un ApplicationUser.
+        //Por lo tanto se cumple el patrón Polymorphism ya que la propiedad Properties es polimórfica
         public class Property
         {
             public string Name { get; set; }

@@ -4,8 +4,9 @@ using Ignis.Areas.Identity.Data;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-//Las clases referentes a Contract van a ser usadas en la 3era entrega del proyecto, ya
-//que para esta entrega consideramos como más complejo lo referente al administrador.
+//Esta es la clase Contract la cual vincula Technician con Client, ya que Contract
+//conoce a Client y Technician, y ApplicationUser (clase base de Client y Technician)
+//tiene una lista de Contracts.
 namespace Ignis.Models
 {
     public class Contract

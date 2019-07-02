@@ -9,6 +9,8 @@ using Ignis.Models;
 
 namespace Ignis.Pages_Contracts
 {
+    //El controlador cumple con Expert porque conoce al contexto y puede mandarle mensajes
+    //al contexto para que este agregue o quite objetos de la base de datos.
     public class DeleteModel : PageModel
     {
         private readonly Ignis.Areas.Identity.Data.IdentityContext _context;
@@ -50,9 +52,19 @@ namespace Ignis.Pages_Contracts
 
             Contract = await _context.Contract.Include(m => m.Technician)
             .FirstOrDefaultAsync(m => (m.ClientId == Contract.ClientId & m.TechnicianId == Contract.TechnicianId));
-            
-            Contract.Technician.TotalWorks = Contract.Technician.TotalWorks + 1;
-            Contract.Technician.TotalPoints = Contract.Technician.TotalPoints + Feedback.Rating;
+
+            //Para que el AverageRanking del tecnico quede actualizado, le mando un mensaje
+            //al tecnico para que recalcule el ranking.
+            //Si el controlador tuviera la responsabilidad de cambiar el AverageRanking,
+            //se violaría el principio SRP.
+            try
+            {
+                Contract.Technician.CalculateRanking(Feedback);
+            }
+            catch (Check.PreconditionException ex)
+            {
+                return Redirect("https://localhost:5001/Exception/Exception?id=" + ex.Message);
+            }
 
             if (Contract != null)
             {

@@ -5,13 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Ignis.Areas.Identity.Data;
 
 //Client es el usuario que tiene el rol del "cliente" en la aplicación que pidió el Centro Ignis.
-//Por lo tanto Client hereda ApplicationUser para que sea un usuario como tal y además definimos las metodos
-//ShowProperties y NamesOfProperties para poder mostrar las propiedades ya que son distintas a las de Technician.
+//Por lo tanto Client hereda ApplicationUser para que sea un usuario como tal y además definimos
+//la lista Properties la cual muestra las propiedades de Client.
+
 namespace Ignis.Models
 {
-    public class Client : Ignis.Areas.Identity.Data.ApplicationUser
+    public class Client : ApplicationUser
     {
         public int Projects 
         { 

@@ -11,12 +11,8 @@ using Ignis.Models;
 
 //Esta página y controlador llamada Profile fue creada por nosotros mismos; sirve para ver las
 //características específicas de los usuarios, por lo tanto aquí se tienen que mostrar diferentes
-//cosas dependiendo de si el usuario es Client o Technician. Por lo tanto, aquí hace sentido el uso de
-//la herencia en Client y Technician como ancestros de ApplicationUser, ya que pudimos aplicar uno de los
-//patrones GRASP el cual es Polimorfism. Como ApplicationUser tiene una definición para ShowProperties
-//y NamesOfProperties, definimos dichas operaciones en Client y Technician, y aca definimos la operación
-//polimórfica donde el receptor del mensaje puede ser de tipo Client o Technician.
-//(Esto también cumple con el principio OCP el cual ya se explicó en la clase ApplicationUser).
+//cosas dependiendo de si el usuario es Client o Technician. Technician se puede diferenciar de 
+//Client por la propiedad Properties.
 namespace Ignis.Areas.Identity.Pages.Users
 {
     [Authorize(Roles=IdentityData.AdminRoleName)] // Solo los usuarios con rol administrador pueden acceder a este controlador
@@ -27,16 +23,18 @@ namespace Ignis.Areas.Identity.Pages.Users
         {
             _context = context;
         }
-        public List<String> Properties {get; set;}
-        public List<String> NamesOfProperties {get; set;}
         public Ignis.Models.RoleWorkerViewModel.RoleWorkerIndexData Technician { get; set; }
         public ApplicationUser ApplicationUser { get;set; }
 
-        public async Task<IActionResult> OnGetAsync(string id,int? courseID)
+        public async Task<IActionResult> OnGetAsync(string id)
         {
-            if (id == null)
+            try
             {
-                return NotFound();
+                Check.Precondition(id != null, "La pagina no se encontro");
+            }
+            catch (Check.PreconditionException ex)
+            {
+                return Redirect("https://localhost:5001/Exception/Exception?id=" + ex.Message);
             }
             ApplicationUser = await _context.Users.Include(m => m.Contracts).FirstOrDefaultAsync(m => m.Id == id);
             Technician t = await _context.Technicians.Include(r => r.WorkersWithRole).ThenInclude(r => r.RoleWorker)
@@ -46,9 +44,13 @@ namespace Ignis.Areas.Identity.Pages.Users
                 ApplicationUser = t;
             }
             
-            if (ApplicationUser == null)
+            try
             {
-                return NotFound();
+                Check.Precondition(ApplicationUser != null, "La pagina no se encontro");
+            }
+            catch (Check.PreconditionException ex)
+            {
+                return Redirect("https://localhost:5001/Exception/Exception?id=" + ex.Message);
             }
             return Page();
         }
