@@ -46,6 +46,7 @@ namespace Ignis.Pages_AdminContracts
 
             if (Contract != null)
             {
+                
                 _context.Contract.Remove(Contract);
                 await _context.SaveChangesAsync();
             }

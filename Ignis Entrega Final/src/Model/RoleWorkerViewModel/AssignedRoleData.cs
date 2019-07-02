@@ -4,6 +4,7 @@ namespace Ignis.Models.RoleWorkerViewModel
     {
         public int RoleWorkerID { get; set; }
         public string Title { get; set; }
+        public Level? Level { get; set; }
         public bool Assigned { get; set; }
     }
 }

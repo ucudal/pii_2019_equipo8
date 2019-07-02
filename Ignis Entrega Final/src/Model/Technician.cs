@@ -38,13 +38,15 @@ namespace Ignis.Models
                 ICollection<Property> result = new List<Property>
                 {
                     new Property { Name =  "Name", Value = this.Name },
-                    new Property { Name = "Available", Value = this.Available.ToString() },
-                    new Property { Name = "TotalWorks", Value = this.TotalWorks.ToString() }
+                    new Property { Name = "AverageRanking", Value = this.AverageRanking.ToString()},
+                    new Property { Name = "TotalWorks", Value = this.TotalWorks.ToString()},
+                    new Property { Name = "Available", Value = this.Available.ToString() }
+                    
                 };
                 string roles = "";
                 foreach(WorkersWithRole r in this.WorkersWithRole)
                 {
-                    roles = roles + r.RoleWorker.Title + ", ";
+                    roles = roles + r.RoleWorker.Title +" " + r.RoleWorker.Level + ", ";
                 }
                 result.Add(new Property { Name = "Roles", Value = roles });
                 return result;

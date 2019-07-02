@@ -7,23 +7,32 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name:
+            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-page="./Index">Back to full List</a>
+        </p>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
+             <th>
+                Name
+            </th>
             <th>
                 AverageRanking
             </th>
-            <th>
-                Available
-            </th>
+            
             <th>
                 TotalWorks
             </th>
+           
             <th>
-                Name
+                Available
             </th>
              <th>
                 Role
@@ -40,28 +49,33 @@
             }
             <tr class="@selectedRow">
             <td>
-                @Html.DisplayFor(modelItem => item.AverageRanking)
+                
+                @Html.DisplayFor(modelItem => item.Name)
+              
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Available)
+                 
+                @Html.DisplayFor(modelItem => item.AverageRanking)
+               
             </td>
+           
             <td>
                 @Html.DisplayFor(modelItem => item.TotalWorks)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
+                @Html.DisplayFor(modelItem => item.Available)
+            </td> 
             <td>
                     @{
                         foreach (var role in item.WorkersWithRole)
                         {
-                            @role.RoleWorker.ID @:  @role.RoleWorker.Title <br />
+                            @role.RoleWorker.Title @:  @role.RoleWorker.Level <br />
                         }
                     }
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Assign" asp-route-id="@item.Id">Assign</a> |
+                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>

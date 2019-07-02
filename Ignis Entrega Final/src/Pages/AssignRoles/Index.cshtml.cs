@@ -28,6 +28,9 @@ namespace Ignis.Pages.AssignRoles
         {
             _context = context;
         }
+       
+        public string CurrentFilter { get; set; }
+
         public int WorkerRoleID { get; set; }
         public string TecnicoID { get; set; }
         public RoleWorkerIndexData tecnico { get; set; }
@@ -39,16 +42,24 @@ namespace Ignis.Pages.AssignRoles
         public List<String> NamesOfProperties {get; set;}
         public ApplicationUser ApplicationUser{get;set;}
 
-
-        public async Task OnGetAsync(string id, int? courseID)
-        {            
+        public async Task OnGetAsync(string id, int? courseID,string searchString)
+        {
+            
+            IQueryable<Technician> studentIQ = from c in _context.Technicians
+                                    select c;
+             if (!String.IsNullOrEmpty(searchString))
+            {
+                studentIQ = studentIQ.Where(c => c.Name.Contains(searchString));
+            }
+           
             // //Acá estan las 2 operaciones polimórficas, las cuales cumplen con el principio
             // //LSP ya que al sustituir ApplicationUser por Client o Tecnico no se encuentran efectos
             // //colaterales. Un ejemplo de efecto colateral puede ser que alla una propiedad que valga
             // //null.
+
             
             tecnico = new RoleWorkerIndexData();
-            tecnico.Technicians= await _context.Technicians
+            tecnico.Technicians= await studentIQ
             .Include(i => i.WorkersWithRole)
                 .ThenInclude(i=> i.RoleWorker)
                 .OrderBy(i=>i.Name)
