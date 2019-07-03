@@ -2,7 +2,7 @@ using System;
 using Xunit;
 using Ignis.Models;
 using Ignis.Areas.Identity.Data;
-using Microsoft.Extensions;
+using Microsoft.Extensions.Identity;
 
 namespace Ignis.Areas.Identity.Data
 {
@@ -31,8 +31,8 @@ namespace Ignis.Areas.Identity.Data
             client1.Name = "Maria Rodriguez";
             client1.DOB = new DateTime(1990, 10, 20);
             client1.Role = "Editor";
-            string actual = string.Format(@"{0} {1} {2} {3} {4}", client1.Id, client1.Name, client1.DOB.ToString("dd/MM/yyyy"), client1.Role, client1.Projects);
-            string expected = "1235 Maria Rodriguez 20/10/1990 Editor 3";
+            string actual = string.Format(@"{0} {1} {2} {3}", client1.Id, client1.Name, client1.DOB.ToString("dd/MM/yyyy"), client1.Role);
+            string expected = "1235 Maria Rodriguez 20/10/1990 Editor";
             Assert.Equal(expected, actual);
         }
 
@@ -44,8 +44,8 @@ namespace Ignis.Areas.Identity.Data
             tec1.Available = true;
             tec1.TotalPoints = 40;
             tec1.TotalWorks = 12;
-            string actual = string.Format(@"{0} {1} {2} {3}", tec1.Available, tec1.AverageRanking, tec1.TotalPoints, tec1.TotalWorks);
-            string expected = "True 4 40 12";
+            string actual = string.Format(@"{0} {1} {2}", tec1.Available, tec1.TotalPoints, tec1.TotalWorks);
+            string expected = "True 40 12";
             Assert.Equal(expected, actual);
         }
     }

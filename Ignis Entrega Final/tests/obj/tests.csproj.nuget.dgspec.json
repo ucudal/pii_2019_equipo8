@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\estudiante.fit\\Documents\\GitHub\\pii_2019_equipo8\\Ignis Entrega Final\\tests\\RazorPagesTest.Tests.csproj": {}
+    "C:\\Users\\Mataguir\\Desktop\\Prog 2\\pii_2019_equipo8\\Ignis Entrega Final\\tests\\tests.csproj": {}
   },
   "projects": {
-    "c:\\Users\\estudiante.fit\\Documents\\GitHub\\pii_2019_equipo8\\Ignis Entrega Final\\src\\Ignis.csproj": {
+    "C:\\Users\\Mataguir\\Desktop\\Prog 2\\pii_2019_equipo8\\Ignis Entrega Final\\src\\Ignis.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\estudiante.fit\\Documents\\GitHub\\pii_2019_equipo8\\Ignis Entrega Final\\src\\Ignis.csproj",
+        "projectUniqueName": "C:\\Users\\Mataguir\\Desktop\\Prog 2\\pii_2019_equipo8\\Ignis Entrega Final\\src\\Ignis.csproj",
         "projectName": "Ignis",
-        "projectPath": "c:\\Users\\estudiante.fit\\Documents\\GitHub\\pii_2019_equipo8\\Ignis Entrega Final\\src\\Ignis.csproj",
-        "packagesPath": "C:\\Users\\estudiante.fit\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\estudiante.fit\\Documents\\GitHub\\pii_2019_equipo8\\Ignis Entrega Final\\src\\obj\\",
+        "projectPath": "C:\\Users\\Mataguir\\Desktop\\Prog 2\\pii_2019_equipo8\\Ignis Entrega Final\\src\\Ignis.csproj",
+        "packagesPath": "C:\\Users\\Mataguir\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Mataguir\\Desktop\\Prog 2\\pii_2019_equipo8\\Ignis Entrega Final\\src\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\estudiante.fit\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Mataguir\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
@@ -77,20 +77,20 @@
         }
       }
     },
-    "c:\\Users\\estudiante.fit\\Documents\\GitHub\\pii_2019_equipo8\\Ignis Entrega Final\\tests\\RazorPagesTest.Tests.csproj": {
+    "C:\\Users\\Mataguir\\Desktop\\Prog 2\\pii_2019_equipo8\\Ignis Entrega Final\\tests\\tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\estudiante.fit\\Documents\\GitHub\\pii_2019_equipo8\\Ignis Entrega Final\\tests\\RazorPagesTest.Tests.csproj",
-        "projectName": "RazorPagesTest.Tests",
-        "projectPath": "c:\\Users\\estudiante.fit\\Documents\\GitHub\\pii_2019_equipo8\\Ignis Entrega Final\\tests\\RazorPagesTest.Tests.csproj",
-        "packagesPath": "C:\\Users\\estudiante.fit\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\estudiante.fit\\Documents\\GitHub\\pii_2019_equipo8\\Ignis Entrega Final\\tests\\obj\\",
+        "projectUniqueName": "C:\\Users\\Mataguir\\Desktop\\Prog 2\\pii_2019_equipo8\\Ignis Entrega Final\\tests\\tests.csproj",
+        "projectName": "tests",
+        "projectPath": "C:\\Users\\Mataguir\\Desktop\\Prog 2\\pii_2019_equipo8\\Ignis Entrega Final\\tests\\tests.csproj",
+        "packagesPath": "C:\\Users\\Mataguir\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Mataguir\\Desktop\\Prog 2\\pii_2019_equipo8\\Ignis Entrega Final\\tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\estudiante.fit\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Mataguir\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
@@ -101,8 +101,8 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "c:\\Users\\estudiante.fit\\Documents\\GitHub\\pii_2019_equipo8\\Ignis Entrega Final\\src\\Ignis.csproj": {
-                "projectPath": "c:\\Users\\estudiante.fit\\Documents\\GitHub\\pii_2019_equipo8\\Ignis Entrega Final\\src\\Ignis.csproj"
+              "C:\\Users\\Mataguir\\Desktop\\Prog 2\\pii_2019_equipo8\\Ignis Entrega Final\\src\\Ignis.csproj": {
+                "projectPath": "C:\\Users\\Mataguir\\Desktop\\Prog 2\\pii_2019_equipo8\\Ignis Entrega Final\\src\\Ignis.csproj"
               }
             }
           }
