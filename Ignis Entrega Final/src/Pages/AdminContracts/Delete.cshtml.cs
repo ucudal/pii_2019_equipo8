@@ -22,11 +22,11 @@ namespace Ignis.Pages_AdminContracts
         [BindProperty]
         public Contract Contract { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string id1, string id2)
+        public async Task<IActionResult> OnGetAsync(string IdClient, string IdTechnician)
         {
             try
             {
-                Check.Precondition(id1 != null & id2 != null, "La pagina no se encontro");
+                Check.Precondition(IdClient != null & IdTechnician != null, "La pagina no se encontro");
             }
             catch (Check.PreconditionException ex)
             {
@@ -34,7 +34,7 @@ namespace Ignis.Pages_AdminContracts
             }
 
             Contract = await _context.Contract.Include(c => c.Client).Include(c => c.Technician)
-            .FirstOrDefaultAsync(m => (m.ClientId == id1 & m.TechnicianId == id2));
+            .FirstOrDefaultAsync(m => (m.ClientId == IdClient & m.TechnicianId == IdTechnician));
 
             if (Contract == null)
             {

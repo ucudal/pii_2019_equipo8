@@ -71,7 +71,7 @@ namespace Ignis.Pages_AdminContracts
             // para que si otro cliente quiere crear un contrato no encuentre al técnico
             Contract.Technician.Available = false;
 
-            Admin.ListaTechnicians.Remove(Contract.Technician);
+            Admin.ListaFiltradaTechnicians.Remove(Contract.Technician);
 
             // Aca aplicamos LSP porque la base de datos guarda instancias de Contract,
             // y en el IndexModel mostramos una lista de Contracts. Por lo tanto al sustituír

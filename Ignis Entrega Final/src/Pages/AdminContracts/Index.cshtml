@@ -62,9 +62,9 @@
                 @Html.DisplayFor(modelItem => item.Client.Name)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id1="@item.ClientId" asp-route-id2="@item.TechnicianId">Edit</a> |
-                <a asp-page="./Details" asp-route-id1="@item.ClientId" asp-route-id2="@item.TechnicianId">Details</a> |
-                <a asp-page="./Delete" asp-route-id1="@item.ClientId" asp-route-id2="@item.TechnicianId">Delete</a>
+                <a asp-page="./Edit" asp-route-IdClient="@item.ClientId" asp-route-IdTechnician="@item.TechnicianId">Edit</a> |
+                <a asp-page="./Details" asp-route-IdClient="@item.ClientId" asp-route-IdTechnician="@item.TechnicianId">Details</a> |
+                <a asp-page="./Delete" asp-route-IdClient="@item.ClientId" asp-route-IdTechnician="@item.TechnicianId">Delete</a>
             </td>
         </tr>
 }

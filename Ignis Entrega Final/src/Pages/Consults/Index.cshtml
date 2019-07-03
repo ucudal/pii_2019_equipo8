@@ -40,7 +40,7 @@
         <td>
 @foreach (var item in Model.Users) {
             <dd>
-                <a asp-page="./Respond" asp-route-id="@item.Id">Respond</a>
+                <a asp-page="./Respond" asp-route-IdUser="@item.Id">Respond</a>
             </dd>
 }
         </td>

@@ -19,57 +19,57 @@ namespace Ignis.Pages.AssignRoles
             var tecnicoRoles = new HashSet<int>(
                 tecnico.WorkersWithRole.Select(c => c.RoleWorkerID));
             AssignedRoleDataList = new List<AssignedRoleData>();
-            foreach (var course in allRoles)
+            foreach (var role in allRoles)
             {
                 AssignedRoleDataList.Add(new AssignedRoleData
                 {
-                    RoleWorkerID = course.ID,
-                    Title = course.Title,
+                    RoleWorkerID = role.ID,
+                    Title = role.Title,
                     
-                    Assigned = tecnicoRoles.Contains(course.ID)
+                    Assigned = tecnicoRoles.Contains(role.ID)
                 });
             }
         }
 
         // Este método sirve para cambiar el rol de los técnicos
         public void UpdateInstructorCourses(Ignis.Areas.Identity.Data.IdentityContext context, 
-            string[] selectedCourses, Technician instructorToUpdate)
+            string[] selectedRoleWorkers, Technician technicianToUpdate)
         {
-            if (selectedCourses == null)
+            if (selectedRoleWorkers == null)
             {
-                instructorToUpdate.WorkersWithRole = new List<WorkersWithRole>();
+                technicianToUpdate.WorkersWithRole = new List<WorkersWithRole>();
                 return;
             }
 
-            var selectedCoursesHS = new HashSet<string>(selectedCourses);
-            var instructorCourses = new HashSet<int>
-                (instructorToUpdate.WorkersWithRole.Select(c => c.RoleWorker.ID));
-            foreach (var course in context.RoleWorker)
+            var selectedRoleWorkersHS = new HashSet<string>(selectedRoleWorkers);
+            var technicianRoles = new HashSet<int>
+                (technicianToUpdate.WorkersWithRole.Select(c => c.RoleWorker.ID));
+            foreach (var role in context.RoleWorker)
             {
                 // Si el rol seleccionado no esta en lista del técnico, se agrega.
                 // Si el rol no esta seleccionado pero se encuentra en la lista del técnico,
                 // se quita.
-                if (selectedCoursesHS.Contains(course.ID .ToString()))
+                if (selectedRoleWorkersHS.Contains(role.ID .ToString()))
                 {
-                    if (!instructorCourses.Contains(course.ID))
+                    if (!technicianRoles.Contains(role.ID))
                     {
-                        instructorToUpdate.WorkersWithRole.Add(
+                        technicianToUpdate.WorkersWithRole.Add(
                             new WorkersWithRole
                             {
-                               TechnicianID = instructorToUpdate.Id,
-                               RoleWorkerID = course.ID
+                               TechnicianID = technicianToUpdate.Id,
+                               RoleWorkerID = role.ID
                             });
                     }
                 }
                 else
                 {
-                    if (instructorCourses.Contains(course.ID))
+                    if (technicianRoles.Contains(role.ID))
                     {
-                        Models.WorkersWithRole courseToRemove
-                            = instructorToUpdate
+                        Models.WorkersWithRole roleToRemove
+                            = technicianToUpdate
                                 .WorkersWithRole
-                                .SingleOrDefault(i => i.RoleWorkerID == course.ID);
-                        context.Remove(courseToRemove);
+                                .SingleOrDefault(i => i.RoleWorkerID == role.ID);
+                        context.Remove(roleToRemove);
                     }
                 }
             }

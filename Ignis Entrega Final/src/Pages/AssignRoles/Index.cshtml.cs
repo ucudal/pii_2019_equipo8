@@ -37,14 +37,14 @@ namespace Ignis.Pages.AssignRoles
         public Admin Admin { get; set; }
 
 
-        public async Task OnGetAsync(string id, int? courseID, string searchString)
+        public async Task OnGetAsync(string id, int? RoleWorkerID, string searchString)
         {
             
-            IQueryable<Technician> studentIQ = from c in _context.Technicians
+            IQueryable<Technician> technicianIQ = from c in _context.Technicians
                                     select c;
              if (!String.IsNullOrEmpty(searchString))
             {
-                studentIQ = studentIQ.Where(c => c.Name.Contains(searchString));
+                technicianIQ = technicianIQ.Where(c => c.Name.Contains(searchString));
             }
            
             // Decidimos que el IndexModel tenga que administrar la lista de técnicos
@@ -52,22 +52,22 @@ namespace Ignis.Pages.AssignRoles
             // bool Available) para que cuando el Admin entre a esta página, se agreguen
             // los técnicos correspondientes a la lista.
 
-            Admin = await _context.Admin.Include(m => m.ListaTechnicians)
+            Admin = await _context.Admin.Include(m => m.ListaFiltradaTechnicians)
             .FirstOrDefaultAsync (m => m.Role == IdentityData.AdminRoleName);
             foreach (Technician t in _context.Technicians)
             {
                 if (t.Available == true)
                 {
-                    if (!Admin.ListaTechnicians.Contains(t))
+                    if (!Admin.ListaFiltradaTechnicians.Contains(t))
                     {
-                        Admin.ListaTechnicians.Add(t);
+                        Admin.ListaFiltradaTechnicians.Add(t);
                     }
                 }
                 else
                 {
-                    if (Admin.ListaTechnicians.Contains(t))
+                    if (Admin.ListaFiltradaTechnicians.Contains(t))
                     {
-                        Admin.ListaTechnicians.Remove(t);
+                        Admin.ListaFiltradaTechnicians.Remove(t);
                     }
                 }
             }
@@ -75,7 +75,7 @@ namespace Ignis.Pages.AssignRoles
 
             
             tecnico = new RoleWorkerIndexData();
-            tecnico.Technicians= await studentIQ
+            tecnico.Technicians= await technicianIQ
             .Include(i => i.WorkersWithRole)
                 .ThenInclude(i=> i.RoleWorker)
                 .OrderBy(i=>i.Name)

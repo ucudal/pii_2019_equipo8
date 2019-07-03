@@ -20,14 +20,14 @@ namespace Ignis.Pages.AssignRoles
 
         public Technician Tecnico { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string id)
+        public async Task<IActionResult> OnGetAsync(string IdTechnician)
         {
-            if (id == null)
+            if (IdTechnician == null)
             {
                 return NotFound();
             }
 
-            Tecnico = await _context.Technicians.FirstOrDefaultAsync(m => m.Id == id);
+            Tecnico = await _context.Technicians.FirstOrDefaultAsync(m => m.Id == IdTechnician);
 
             if (Tecnico == null)
             {

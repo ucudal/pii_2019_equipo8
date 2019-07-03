@@ -18,11 +18,9 @@ namespace Ignis.Pages.VerRoles
             _context = context;
         }
 
-        //public IList<RoleWorker> RoleWorker { get;set; }
         public PaginatedList<RoleWorker> RoleWorker { get; set; }
 
-         public string NameSort { get; set; }
-        public string DateSort { get; set; }
+         public string TitleSort { get; set; }
         public string CurrentFilter { get; set; }
         public string CurrentSort { get; set; }
 
@@ -30,8 +28,7 @@ namespace Ignis.Pages.VerRoles
             string currentFilter, string searchString, int? pageIndex)
         {
             CurrentSort = sortOrder;
-            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            DateSort = sortOrder == "Date" ? "date_desc" : "Date";
+            TitleSort = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
             if (searchString != null)
             {
                 pageIndex = 1;
@@ -43,28 +40,26 @@ namespace Ignis.Pages.VerRoles
 
             CurrentFilter = searchString;
 
-            IQueryable<RoleWorker> studentIQ = from s in _context.RoleWorker
+            IQueryable<RoleWorker> rolesIQ = from s in _context.RoleWorker
                                             select s;
             if (!String.IsNullOrEmpty(searchString))
             {
-                studentIQ = studentIQ.Where(s => s.Title.Contains(searchString));
+                rolesIQ = rolesIQ.Where(s => s.Title.Contains(searchString));
             }
             switch (sortOrder)
             {
-                case "name_desc":
-                    studentIQ = studentIQ.OrderByDescending(s => s.Title);
+                case "title_desc":
+                    rolesIQ = rolesIQ.OrderByDescending(s => s.Title);
                     break;
                 default:
-                    studentIQ = studentIQ.OrderBy(s => s.Title);
+                    rolesIQ = rolesIQ.OrderBy(s => s.Title);
                     break;
             }
 
-            int pageSize = 3;
+            int pageSize = 5;
             RoleWorker = await PaginatedList<RoleWorker>.CreateAsync(
-                studentIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
+                rolesIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
 
-
-                    //RoleWorker = await _context.RoleWorker.ToListAsync();
         }
     }
 }

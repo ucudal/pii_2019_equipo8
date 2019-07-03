@@ -70,7 +70,7 @@ namespace Ignis.Pages_AdminContracts
 
             // Como el técnico ya tiene un contrato lo quito de la lista de técnicos filtrada
             // para que si otro cliente quiere crear un contrato no encuentre al técnico
-            Admin.ListaTechnicians.Remove(Contract.Technician);
+            Admin.ListaFiltradaTechnicians.Remove(Contract.Technician);
             
 
             // Aca aplicamos LSP porque la base de datos guarda instancias de Contract,
