@@ -23,14 +23,14 @@ namespace Ignis.Pages_AssignRoles
         [BindProperty]
         public Technician Technician { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string id)
+        public async Task<IActionResult> OnGetAsync(string IdTechnician)
         {
-            if (id == null)
+            if (IdTechnician == null)
             {
                 return NotFound();
             }
 
-            Technician = await _context.Technicians.FirstOrDefaultAsync(m => m.Id == id);
+            Technician = await _context.Technicians.FirstOrDefaultAsync(m => m.Id == IdTechnician);
 
             if (Technician == null)
             {
@@ -67,9 +67,9 @@ namespace Ignis.Pages_AssignRoles
             return RedirectToPage("./Index");
         }
 
-        private bool TechnicianExists(string id)
+        private bool TechnicianExists(string IdTechnician)
         {
-            return _context.Technicians.Any(e => e.Id == id);
+            return _context.Technicians.Any(e => e.Id == IdTechnician);
         }
     }
 }

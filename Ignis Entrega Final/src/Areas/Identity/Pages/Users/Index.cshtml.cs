@@ -27,7 +27,7 @@ namespace Ignis.Areas.Identity.Pages.Users
         // los usuarios y facilitar la búsqueda
         [BindProperty(SupportsGet = true)]
         public string NameSort { get; set; }
-        public string DateSort { get; set; }
+        public string RoleSort { get; set; }
         public string CurrentFilter { get; set; }
         public string CurrentSort { get; set; }
         public PaginatedList<ApplicationUser> ApplicationUser { get; set; }
@@ -41,7 +41,7 @@ namespace Ignis.Areas.Identity.Pages.Users
             
             CurrentSort = sortOrder;
             NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            DateSort = sortOrder == "Date" ? "date_desc" : "Date";
+            RoleSort = sortOrder == "Role" ? "role_desc" : "Role";
             if (searchString != null)
             {
                 pageIndex = 1;
@@ -53,33 +53,33 @@ namespace Ignis.Areas.Identity.Pages.Users
 
             CurrentFilter = searchString;
 
-             IQueryable<ApplicationUser> studentIQ = from s in _context.Users
+             IQueryable<ApplicationUser> userIQ = from s in _context.Users
              where s.Role != IdentityData.AdminRoleName
                                              select s;
             if (!String.IsNullOrEmpty(searchString))
             {
-                studentIQ = studentIQ.Where(s => s.Name.Contains(searchString)
+                userIQ = userIQ.Where(s => s.Name.Contains(searchString)
                                     || s.Email.Contains(searchString));
             }
             switch (sortOrder)
             {
                 case "name_desc":
-                    studentIQ = studentIQ.OrderByDescending(s => s.Name);
+                    userIQ = userIQ.OrderByDescending(s => s.Name);
                     break;
-                case "Date":
-                    studentIQ = studentIQ.OrderBy(s => s.Role );
+                case "Role":
+                    userIQ = userIQ.OrderBy(s => s.Role );
                     break;
-                case "date_desc":
-                    studentIQ = studentIQ.OrderByDescending(s => s.Role);
+                case "role_desc":
+                    userIQ = userIQ.OrderByDescending(s => s.Role);
                     break;
                 default:
-                    studentIQ = studentIQ.OrderBy(s => s.Name);
+                    userIQ = userIQ.OrderBy(s => s.Name);
                     break;
             }
 
-            int pageSize = 3;
+            int pageSize = 5;
             ApplicationUser = await PaginatedList<ApplicationUser>.CreateAsync(
-                studentIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
+                userIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
             
 
 

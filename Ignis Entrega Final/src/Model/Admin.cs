@@ -16,6 +16,6 @@ namespace Ignis.Areas.Identity.Data
         // Esta lista de técnicos es necesaria para que cuando el cliente quiera
         // crear un contrato, que lo pueda hacer mediante la lista filtrada de
         // técnicos
-        public ICollection<Technician> ListaTechnicians { get; set; } = new List<Technician>();
+        public ICollection<Technician> ListaFiltradaTechnicians { get; set; } = new List<Technician>();
     }
 }

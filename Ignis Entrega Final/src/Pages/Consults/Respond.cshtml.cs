@@ -23,14 +23,14 @@ namespace Ignis.Pages_Consults
         [BindProperty]
         public ApplicationUser ApplicationUser { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string id)
+        public async Task<IActionResult> OnGetAsync(string IdUser)
         {
-            if (id == null)
+            if (IdUser == null)
             {
                 return NotFound();
             }
 
-            ApplicationUser = await _context.Users.FirstOrDefaultAsync(m => m.Id == id);
+            ApplicationUser = await _context.Users.FirstOrDefaultAsync(m => m.Id == IdUser);
 
             if (ApplicationUser == null)
             {
@@ -67,9 +67,9 @@ namespace Ignis.Pages_Consults
             return RedirectToPage("./Index");
         }
 
-        private bool UserExists(string id)
+        private bool UserExists(string IdUser)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return _context.Users.Any(e => e.Id == IdUser);
         }
     }
 }

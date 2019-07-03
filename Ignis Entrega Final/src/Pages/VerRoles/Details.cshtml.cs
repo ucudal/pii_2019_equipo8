@@ -20,18 +20,18 @@ namespace Ignis.Pages.VerRoles
 
         public RoleWorker RoleWorker { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int? IdRoleWorker)
         {
             try
             {
-                Check.Precondition(id != null, "La pagina no se encontro");
+                Check.Precondition(IdRoleWorker != null, "La pagina no se encontro");
             }
             catch (Check.PreconditionException ex)
             {
                 return Redirect("https://localhost:5001/Exception/Exception?id=" + ex.Message);
             }
 
-            RoleWorker = await _context.RoleWorker.FirstOrDefaultAsync(m => m.ID == id);
+            RoleWorker = await _context.RoleWorker.FirstOrDefaultAsync(m => m.ID == IdRoleWorker);
 
             if (RoleWorker == null)
             {

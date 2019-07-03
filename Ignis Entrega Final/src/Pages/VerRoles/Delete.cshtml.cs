@@ -21,14 +21,14 @@ namespace Ignis.Pages.VerRoles
         [BindProperty]
         public RoleWorker RoleWorker { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int? IdRoleWorker)
         {
-            if (id == null)
+            if (IdRoleWorker == null)
             {
                 return NotFound();
             }
 
-            RoleWorker = await _context.RoleWorker.FirstOrDefaultAsync(m => m.ID == id);
+            RoleWorker = await _context.RoleWorker.FirstOrDefaultAsync(m => m.ID == IdRoleWorker);
 
             if (RoleWorker == null)
             {
@@ -37,14 +37,14 @@ namespace Ignis.Pages.VerRoles
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(int? IdRoleWorker)
         {
-            if (id == null)
+            if (IdRoleWorker == null)
             {
                 return NotFound();
             }
 
-            RoleWorker = await _context.RoleWorker.FindAsync(id);
+            RoleWorker = await _context.RoleWorker.FindAsync(IdRoleWorker);
 
             if (RoleWorker != null)
             {

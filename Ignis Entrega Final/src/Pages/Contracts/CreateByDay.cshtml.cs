@@ -28,9 +28,9 @@ namespace Ignis.Pages_Contracts
             // observar que la lista que se da es la filtrada por el Admin.
             // El valor que se selecciona del tecnico  es el Id, mientras que el valor
             // que se muestra es el nombre.
-            Admin = _context.Admin.Include(m => m.ListaTechnicians).ThenInclude(m => m.WorkersWithRole)
+            Admin = _context.Admin.Include(m => m.ListaFiltradaTechnicians).ThenInclude(m => m.WorkersWithRole)
             .ThenInclude(m => m.RoleWorker).FirstOrDefault(m => m.Role == IdentityData.AdminRoleName);
-            ViewData["Technician"] = new SelectList(Admin.ListaTechnicians, "Id", "Name");
+            ViewData["Technician"] = new SelectList(Admin.ListaFiltradaTechnicians, "Id", "Name");
             return Page();
         }
 
@@ -88,7 +88,7 @@ namespace Ignis.Pages_Contracts
             // Como el técnico ya tiene un contrato lo quito de la lista de técnicos filtrada
             // para que si otro cliente quiere crear un contrato no encuentre al técnico
             Contract.Technician.Available = false;
-            Admin.ListaTechnicians.Remove(Contract.Technician);
+            Admin.ListaFiltradaTechnicians.Remove(Contract.Technician);
             
             // Aca aplicamos LSP porque la base de datos guarda instancias de Contract,
             // y en el IndexModel mostramos una lista de Contracts. Por lo tanto al sustituír

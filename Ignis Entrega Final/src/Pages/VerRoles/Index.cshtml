@@ -23,7 +23,7 @@
     <thead>
         <tr>
             <th>
-                <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort"
+                <a asp-page="./Index" asp-route-sortOrder="@Model.TitleSort"
                    asp-route-currentFilter="@Model.CurrentFilter">
                 @Html.DisplayNameFor(model => model.RoleWorker[0].Title)
                 </a>
@@ -45,9 +45,9 @@
                 @Html.DisplayFor(modelItem => item.Level)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                <a asp-page="./Edit" asp-route-IdRoleWorker="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-IdRoleWorker="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-IdRoleWorker="@item.ID">Delete</a>
             </td>
         </tr>
 }

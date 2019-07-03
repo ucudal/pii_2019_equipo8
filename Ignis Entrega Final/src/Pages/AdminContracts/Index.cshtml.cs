@@ -19,18 +19,18 @@ namespace Ignis.Pages_AdminContracts
             _context = context;
         }
         public string CurrentFilter { get; set; }
-        public IList<Contract> Contract { get;set; }
+        public IList<Contract> Contract { get; set; }
 
         public async Task OnGetAsync(string searchString)
         {
-            IQueryable<Contract> studentIQ = from c in _context.Contract
+            IQueryable<Contract> contractIQ = from c in _context.Contract
                                     select c;
             if (!String.IsNullOrEmpty(searchString))
             {
-                studentIQ = studentIQ.Where(c => c.Technician.Name.Contains(searchString)
+                contractIQ = contractIQ.Where(c => c.Technician.Name.Contains(searchString)
                                || c.Client.Name.Contains(searchString));
             }
-            Contract = await studentIQ.Include(c => c.Technician)
+            Contract = await contractIQ.Include(c => c.Technician)
             .Include(c => c.Client).ToListAsync();
         }
     }
