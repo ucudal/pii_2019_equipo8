@@ -13,9 +13,9 @@ namespace Ignis.Pages_AssignRoles
 {
     public class EditModel : PageModel
     {
-        private readonly Ignis.Areas.Identity.Data.IdentityContext _context;
+        private readonly IdentityContext _context;
 
-        public EditModel(Ignis.Areas.Identity.Data.IdentityContext context)
+        public EditModel(IdentityContext context)
         {
             _context = context;
         }

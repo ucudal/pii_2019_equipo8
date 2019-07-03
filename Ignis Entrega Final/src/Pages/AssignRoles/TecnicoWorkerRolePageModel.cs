@@ -31,6 +31,7 @@ namespace Ignis.Pages.AssignRoles
             }
         }
 
+        // Este método sirve para cambiar el rol de los técnicos
         public void UpdateInstructorCourses(Ignis.Areas.Identity.Data.IdentityContext context, 
             string[] selectedCourses, Technician instructorToUpdate)
         {
@@ -45,6 +46,9 @@ namespace Ignis.Pages.AssignRoles
                 (instructorToUpdate.WorkersWithRole.Select(c => c.RoleWorker.ID));
             foreach (var course in context.RoleWorker)
             {
+                // Si el rol seleccionado no esta en lista del técnico, se agrega.
+                // Si el rol no esta seleccionado pero se encuentra en la lista del técnico,
+                // se quita.
                 if (selectedCoursesHS.Contains(course.ID .ToString()))
                 {
                     if (!instructorCourses.Contains(course.ID))

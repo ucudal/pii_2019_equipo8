@@ -10,6 +10,8 @@ using Ignis.Models;
 
 namespace Ignis.Pages_AdminContracts
 {
+    //Este es el controlador para crear un contrato por hora, decidimos
+    //hacerlo de esta forma para evitar preguntar con un if por el tipo del contrato
     public class CreateByHourModel : PageModel
     {
         private readonly Ignis.Areas.Identity.Data.IdentityContext _context;
@@ -21,16 +23,25 @@ namespace Ignis.Pages_AdminContracts
 
         public IActionResult OnGet()
         {
-        ViewData["Technician"] = new SelectList(_context.Technicians, "Id", "Name");
-        ViewData["Client"] = new SelectList(_context.Clients, "Id", "Name");
+            // Estas listas son para elegir el tecnico y cliente del contrato.
+            // El valor que se selecciona tanto del tecnico como del cliente es
+            // el Id, mientras que el valor que se muestra es el nombre.
+            ViewData["Technician"] = new SelectList(_context.Technicians, "Id", "Name");
+            ViewData["Client"] = new SelectList(_context.Clients, "Id", "Name");
             return Page();
         }
 
         [BindProperty]
         public ContractByHour Contract { get; set; }
+        public Admin Admin { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
+            // Busco al Admin en la base de datos
+            Admin = _context.Admin.FirstOrDefault(m => m.Role == IdentityData.AdminRoleName);
+
+            // Aca busco si en la base de datos ya hay un contrato con el mismo técnico
+            // Si lo hay se lanza la excepción.
             Contract contract = _context.Contract
             .FirstOrDefault(m => m.TechnicianId == Contract.TechnicianId);
             try
@@ -46,22 +57,27 @@ namespace Ignis.Pages_AdminContracts
             {
                 return Page();
             }
+            // Aqui agrego el contrato a la lista de contratos del cliente y el técnico
             Contract.Client = _context.Clients.Find(Contract.ClientId);
+
             Contract.Technician = _context.Technicians.Find(Contract.TechnicianId);
+
             Contract.Client.Contracts.Add(Contract);
+
             Contract.Technician.Contracts.Add(Contract);
-            int TotalContracts = _context.Contract.Count();
+
+            Contract.Technician.Available = false;
+
+            // Como el técnico ya tiene un contrato lo quito de la lista de técnicos filtrada
+            // para que si otro cliente quiere crear un contrato no encuentre al técnico
+            Admin.ListaTechnicians.Remove(Contract.Technician);
+            
+
+            // Aca aplicamos LSP porque la base de datos guarda instancias de Contract,
+            // y en el IndexModel mostramos una lista de Contracts. Por lo tanto al sustituír
+            // Contract por ContractByDay o ContractByHour no se encuentran efectos colaterales.
             _context.Contract.Add(Contract);
             await _context.SaveChangesAsync();
-            try
-            {
-                Check.Postcondition(_context.Contract.Count() == TotalContracts + 1,
-                "El contrato no se añadio a la base de datos");
-            }
-            catch (Check.PostconditionException ex)
-            {
-                return Redirect("https://localhost:5001/Exception/Exception?id=" + ex.Message);
-            }
 
             return RedirectToPage("./Index");
         }

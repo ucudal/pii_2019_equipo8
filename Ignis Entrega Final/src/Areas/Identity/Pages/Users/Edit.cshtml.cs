@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Ignis.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Ignis.Models;
 
 namespace Ignis.Areas.Identity.Pages.Users
 {
@@ -95,7 +96,7 @@ namespace Ignis.Areas.Identity.Pages.Users
             return RedirectToPage("./Index");
         }
 
-        private bool ApplicationUserExists(string id)
+        private bool PersonExists(string id)
         {
             var user = _userManager.FindByIdAsync(id);
             return user != null;

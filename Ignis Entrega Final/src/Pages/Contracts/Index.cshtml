@@ -60,8 +60,8 @@
             @if(Model.ApplicationUser.Role=="Cliente")
             {
                 <td>
-                    <a asp-page="./Delete" asp-route-id1="@Model.ApplicationUser.Id"
-                    asp-route-id2="@item.TechnicianId">Delete</a>
+                    <a asp-page="./Delete" asp-route-idClient="@Model.ApplicationUser.Id"
+                    asp-route-idTechnician="@item.TechnicianId">Delete</a>
                 </td>
             }
             </tr>

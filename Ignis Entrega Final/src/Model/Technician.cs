@@ -5,14 +5,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Ignis.Areas.Identity.Data;
 
-//Technician es el usuario que tiene el rol del "técnico" en la aplicación que pidió el Centro Ignis.
-//Por lo tanto Technician hereda de ApplicationUser para que  sea un usuario como tal 
-//y además definimos la propiedad Properties la cual muestra las propiedades específicas del
-//tecnico.
+// Technician es el usuario que tiene el rol del "técnico" en la aplicación que pidió el Centro Ignis.
+// Por lo tanto Technician hereda de ApplicationUser para que  sea un usuario como tal 
+// y además definimos la propiedad Properties la cual muestra las propiedades específicas del
+// tecnico.
+
+// Decidimos usar herencia porque en los controladores podemos sustituir a ApplicationUser
+// por Client o Technician. Por lo tanto cumplimos con el principio LSP porque al sustituirlos
+// no se encuentre efectos colaterales.
 namespace Ignis.Models
 {
-    public class Technician : Ignis.Areas.Identity.Data.ApplicationUser
+    public class Technician : ApplicationUser
     {
         public float AverageRanking 
         { 
@@ -53,11 +58,11 @@ namespace Ignis.Models
                 return result;
             }    
         }
-        //Aquí aplicamos el principio Dependency Inversion por que Technician ya
-        //no depende de Feedback sino que depende de una abstracción.
+        // Aquí aplicamos el principio Dependency Inversion por que Technician ya
+        // no depende de Feedback sino que depende de una abstracción.
         public void CalculateRanking(IBaseFeedback feedback)
         {
-            //El Feedback no puede valer null
+            // El Feedback no puede valer null
             Check.Precondition(feedback != null, "El Feedback no se escribio");
             this.TotalWorks++;
             this.TotalPoints += feedback.Rating;

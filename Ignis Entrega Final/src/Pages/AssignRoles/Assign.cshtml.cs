@@ -14,6 +14,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+
 namespace Ignis.Pages.AssignRoles
 {
     public class AssignModel : TecnicoWorkerRolePageModel
@@ -50,26 +51,28 @@ namespace Ignis.Pages.AssignRoles
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(string id ,string[] selectedCourses)
+        public async Task<IActionResult> OnPostAsync(string id ,string[] selectedRoles)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            var instructorToUpdate = await _context.Technicians
+            var technicianToUpdate = await _context.Technicians
                 .Include(i => i.WorkersWithRole)
                     .ThenInclude(i => i.RoleWorker)
                 .FirstOrDefaultAsync(s => s.Id == id);
             if (await TryUpdateModelAsync<Technician>(
-                instructorToUpdate,
+                technicianToUpdate,
                 "Tecnico",
                 i => i.Name,i => i.WorkersWithRole))
             {
-                UpdateInstructorCourses(_context, selectedCourses, instructorToUpdate);
+                UpdateInstructorCourses(_context, selectedRoles, technicianToUpdate);
+                // Esta excepción esta porque consideramos que si el técnico tiene más de
+                // 3 roles sería demasiado
                 try
                 {
-                    Check.Postcondition(instructorToUpdate.WorkersWithRole.Count <= 3,
+                    Check.Postcondition(technicianToUpdate.WorkersWithRole.Count <= 3,
                     "El tecnico no puede tener mas de 3 roles");
                 }
                 catch (Check.PostconditionException ex)
@@ -80,8 +83,8 @@ namespace Ignis.Pages.AssignRoles
                 
                 return RedirectToPage("./Index");
             }
-            UpdateInstructorCourses(_context, selectedCourses, instructorToUpdate);
-            PopulateAssignedCourseData(_context, instructorToUpdate);
+            UpdateInstructorCourses(_context, selectedRoles, technicianToUpdate);
+            PopulateAssignedCourseData(_context, technicianToUpdate);
             
             return Page();
            
