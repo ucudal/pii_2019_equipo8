@@ -4,10 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ignis.Models
 {
-    //Esta es la clase Feedback la cual cumple el rol del "feedback" cuando
-    //el cliente termina su contrato con el tecnico.
-    //Hicimos que esta clase sea del tipo IBaseFeedback para poder aplicar DIP
-    //en Technician.
+    // Esta es la clase Feedback la cual cumple el rol del "feedback" cuando
+    // el cliente termina su contrato con el tecnico.
+    // Hicimos que esta clase sea del tipo IBaseFeedback para poder aplicar DIP
+    // en Technician.
     public class Feedback : IBaseFeedback
     {
         public int ID { get; set; }

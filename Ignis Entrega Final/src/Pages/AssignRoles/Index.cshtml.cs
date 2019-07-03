@@ -34,9 +34,10 @@ namespace Ignis.Pages.AssignRoles
         public int WorkerRoleID { get; set; }
         public string TecnicoID { get; set; }
         public RoleWorkerIndexData tecnico { get; set; }
+        public Admin Admin { get; set; }
 
 
-        public async Task OnGetAsync(string id, int? courseID,string searchString)
+        public async Task OnGetAsync(string id, int? courseID, string searchString)
         {
             
             IQueryable<Technician> studentIQ = from c in _context.Technicians
@@ -46,10 +47,31 @@ namespace Ignis.Pages.AssignRoles
                 studentIQ = studentIQ.Where(c => c.Name.Contains(searchString));
             }
            
-            // //Acá estan las 2 operaciones polimórficas, las cuales cumplen con el principio
-            // //LSP ya que al sustituir ApplicationUser por Client o Tecnico no se encuentran efectos
-            // //colaterales. Un ejemplo de efecto colateral puede ser que alla una propiedad que valga
-            // //null.
+            // Decidimos que el IndexModel tenga que administrar la lista de técnicos
+            // filtrados (es decir que se fije si el técnico tiene como verdadero el
+            // bool Available) para que cuando el Admin entre a esta página, se agreguen
+            // los técnicos correspondientes a la lista.
+
+            Admin = await _context.Admin.Include(m => m.ListaTechnicians)
+            .FirstOrDefaultAsync (m => m.Role == IdentityData.AdminRoleName);
+            foreach (Technician t in _context.Technicians)
+            {
+                if (t.Available == true)
+                {
+                    if (!Admin.ListaTechnicians.Contains(t))
+                    {
+                        Admin.ListaTechnicians.Add(t);
+                    }
+                }
+                else
+                {
+                    if (Admin.ListaTechnicians.Contains(t))
+                    {
+                        Admin.ListaTechnicians.Remove(t);
+                    }
+                }
+            }
+            _context.SaveChanges();
 
             
             tecnico = new RoleWorkerIndexData();
@@ -58,6 +80,7 @@ namespace Ignis.Pages.AssignRoles
                 .ThenInclude(i=> i.RoleWorker)
                 .OrderBy(i=>i.Name)
                 .ToListAsync();
+            
             
         }
     }

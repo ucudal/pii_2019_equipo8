@@ -4,9 +4,9 @@ using Ignis.Areas.Identity.Data;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-//Esta es la clase Contract la cual vincula Technician con Client, ya que Contract
-//conoce a Client y Technician, y ApplicationUser (clase base de Client y Technician)
-//tiene una lista de Contracts.
+// Esta es la clase Contract la cual vincula Technician con Client, ya que Contract
+// conoce a Client y Technician, y ApplicationUser (clase base de Client y Technician)
+// tiene una lista de Contracts.
 namespace Ignis.Models
 {
     public class Contract

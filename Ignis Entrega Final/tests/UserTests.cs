@@ -27,7 +27,6 @@ namespace Ignis.Areas.Identity.Data
         public void TestClient()
         {
             Client client1 = new Client();
-            client1.Projects = 3;
             client1.Id ="1235";
             client1.Name = "Maria Rodriguez";
             client1.DOB = new DateTime(1990, 10, 20);
@@ -43,7 +42,6 @@ namespace Ignis.Areas.Identity.Data
         {
             Technician tec1 = new Technician();
             tec1.Available = true;
-            tec1.AverageRanking = 4;
             tec1.TotalPoints = 40;
             tec1.TotalWorks = 12;
             string actual = string.Format(@"{0} {1} {2} {3}", tec1.Available, tec1.AverageRanking, tec1.TotalPoints, tec1.TotalWorks);

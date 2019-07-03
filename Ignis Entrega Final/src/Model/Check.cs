@@ -2,6 +2,9 @@ using System;
 
 namespace Ignis.Models
 {
+    // Esta es la clase Check que cumple el rol de las excepciones en nuestro programa.
+    // Los controladores son los que mayoritariamente usan las excepciones. Y si
+    // la excepción se levanta, redirige al usuario con el mensaje de dicha excepción.
     public class Check : Exception
     {
         public class PreconditionException : Exception

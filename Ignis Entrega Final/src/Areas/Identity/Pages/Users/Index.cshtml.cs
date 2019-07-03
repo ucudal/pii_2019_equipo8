@@ -9,9 +9,9 @@ using Ignis.Areas.Identity.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-//Las páginas y controladores con nombres Index, Create, Edit y Delete son creadas con el Scaffolding
-//del ASP.NET. Es decir, la mayoría del código no está creado por nosotros. Estas páginas solo las puede
-//ver el administrador
+// Las páginas y controladores con nombres Index, Create, Edit y Delete son creadas con el Scaffolding
+// del ASP.NET. Es decir, la mayoría del código no está creado por nosotros. Estas páginas solo las puede
+// ver el administrador
 namespace Ignis.Areas.Identity.Pages.Users
 {
     [Authorize(Roles=IdentityData.AdminRoleName)] // Solo los usuarios con rol administrador pueden acceder a este controlador
@@ -23,8 +23,8 @@ namespace Ignis.Areas.Identity.Pages.Users
         {
             _context = context;
         }
-        //A esta página decidimos agregarle estas propiedades para que se puedan ordenar
-        //los usuarios y facilitar la búsqueda
+        // A esta página decidimos agregarle estas propiedades para que se puedan ordenar
+        // los usuarios y facilitar la búsqueda
         [BindProperty(SupportsGet = true)]
         public string NameSort { get; set; }
         public string DateSort { get; set; }

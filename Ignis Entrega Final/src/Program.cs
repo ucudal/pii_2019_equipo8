@@ -7,11 +7,14 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Ignis.Areas.Identity.Data;
 
-//Aquí es donde se corre el programa de nuestra aplicación. En todas nuestras clases del modelo, las vistas
-//y los controladores aplicamos el principio SRP el cual dice que ninguna clase debe tener más de una sola
-//razón de cambio. Cumplimos con ese principio porque en el modelo tanto ApplicationUser como Technician o Client
-//solo tienen que mostrar sus propiedades. Lo mismo con los controladores ya que sus responsabilidades
-//se basan en encontrar en la base de datos los ApplicationUser y guardar instancias de ellos.
+// Aquí es donde se corre el programa de nuestra aplicación. En todas nuestras clases del modelo, las vistas
+// y los controladores aplicamos el principio SRP el cual dice que ninguna clase debe tener más de una sola
+// razón de cambio. Cumplimos con ese principio porque en el modelo tanto ApplicationUser como Technician o Client
+// solo tienen que mostrar sus propiedades. Lo mismo con los controladores ya que sus responsabilidades
+// se basan en encontrar en la base de datos los ApplicationUser y guardar instancias de ellos.
+
+// Los controladores cumplen con Expert porque conocen al contexto y pueden mandarle mensajes
+// al contexto para que este agregue o quite objetos de la base de datos.
 namespace Ignis
 {
     public class Program

@@ -8,7 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Ignis.Areas.Identity.Data;
 using Ignis.Models;
 
-//Este es el contexto el cual hace que se guarden los usuarios en la base de datos
+// Este es el contexto el cual hace que se guarden los usuarios en la base de datos.
+// Y en los controladores se manda un mensaje a este contexto para que se pueda
+// recuperar de la base de datos el objeto que se quiere usar.
 namespace Ignis.Areas.Identity.Data
 {
     public class IdentityContext : IdentityDbContext<ApplicationUser>

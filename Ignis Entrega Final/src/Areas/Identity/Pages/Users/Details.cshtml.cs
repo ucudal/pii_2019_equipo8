@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Ignis.Areas.Identity.Data;
 using Microsoft.AspNetCore.Authorization;
+using Ignis.Models;
 
 namespace Ignis.Areas.Identity.Pages.Users
 {
@@ -24,17 +25,26 @@ namespace Ignis.Areas.Identity.Pages.Users
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
-            if (id == null)
+            try
             {
-                return NotFound();
+                Check.Precondition(id != null, "No se encontro la pagina");
+            }
+            catch (Check.PreconditionException ex)
+            {
+                return Redirect("https://localhost:5001/Exception/Exception?id=" + ex.Message);
             }
 
             ApplicationUser = await _context.Users.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (ApplicationUser == null)
+            try
             {
-                return NotFound();
+                Check.Postcondition(ApplicationUser != null, "No se encontro el usuario");
             }
+            catch (Check.PostconditionException ex)
+            {
+                return Redirect("https://localhost:5001/Exception/Exception?id=" + ex.Message);
+            }
+
             return Page();
         }
     }

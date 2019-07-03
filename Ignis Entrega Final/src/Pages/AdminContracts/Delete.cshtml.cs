@@ -24,9 +24,13 @@ namespace Ignis.Pages_AdminContracts
 
         public async Task<IActionResult> OnGetAsync(string id1, string id2)
         {
-            if (id1 == null || id2 == null)
+            try
             {
-                return NotFound();
+                Check.Precondition(id1 != null & id2 != null, "La pagina no se encontro");
+            }
+            catch (Check.PreconditionException ex)
+            {
+                return Redirect("https://localhost:5001/Exception/Exception?id=" + ex.Message);
             }
 
             Contract = await _context.Contract.Include(c => c.Client).Include(c => c.Technician)
@@ -46,7 +50,6 @@ namespace Ignis.Pages_AdminContracts
 
             if (Contract != null)
             {
-                
                 _context.Contract.Remove(Contract);
                 await _context.SaveChangesAsync();
             }

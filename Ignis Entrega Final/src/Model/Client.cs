@@ -7,9 +7,13 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Ignis.Areas.Identity.Data;
 
-//Client es el usuario que tiene el rol del "cliente" en la aplicación que pidió el Centro Ignis.
-//Por lo tanto Client hereda ApplicationUser para que sea un usuario como tal y además definimos
-//la lista Properties la cual muestra las propiedades de Client.
+// Client es el usuario que tiene el rol del "cliente" en la aplicación que pidió el Centro Ignis.
+// Por lo tanto Client hereda ApplicationUser para que sea un usuario como tal y además definimos
+// la lista Properties la cual muestra las propiedades de Client.
+
+// Decidimos usar herencia porque en los controladores podemos sustituir a ApplicationUser
+// por Client o Technician. Por lo tanto cumplimos con el principio LSP porque al sustituirlos
+// no se encuentran efectos colaterales.
 
 namespace Ignis.Models
 {

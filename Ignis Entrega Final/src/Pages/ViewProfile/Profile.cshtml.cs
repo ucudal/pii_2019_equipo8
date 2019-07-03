@@ -13,8 +13,8 @@ namespace Ignis.Pages_ViewProfile
 {
     public class ProfileModel : PageModel
     {
-        private readonly Ignis.Areas.Identity.Data.IdentityContext _context;
-        public ProfileModel(Ignis.Areas.Identity.Data.IdentityContext context)
+        private readonly IdentityContext _context;
+        public ProfileModel(IdentityContext context)
         {
             _context = context;
         }
@@ -22,19 +22,29 @@ namespace Ignis.Pages_ViewProfile
 
         public async Task<IActionResult> OnGetAsync()
         {
+            // Obtengo el Username del usuario que esta navegando
             string UserEmail = User.Identity.Name;
-            ApplicationUser = await _context.Users.Include(m => m.Contracts).FirstOrDefaultAsync(m => m.Email == UserEmail);
-            Technician t = await _context.Technicians.Include(r => r.WorkersWithRole).ThenInclude(r => r.RoleWorker)
+            ApplicationUser = await _context.Users.Include(m => m.Contracts)
             .FirstOrDefaultAsync(m => m.Email == UserEmail);
+
+            // Si el usuario es un tecnico hay que traer de la base de datos los roles
+            // para que se puedan mostrar
+            Technician t = await _context.Technicians.Include(r => r.WorkersWithRole)
+            .ThenInclude(r => r.RoleWorker).FirstOrDefaultAsync(m => m.Email == UserEmail);
             if (t != null)
             {
                 ApplicationUser = t;
             }
-            
-            if (ApplicationUser == null)
+
+            try
             {
-                return NotFound();
+                Check.Postcondition(ApplicationUser != null, "No se encontro el usuario");
             }
+            catch (Check.PostconditionException ex)
+            {
+                return Redirect("https://localhost:5001/Exception/Exception?id=" + ex.Message);
+            }
+            
             return Page();
         }
     }

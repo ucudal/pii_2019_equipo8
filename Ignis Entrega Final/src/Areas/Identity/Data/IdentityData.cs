@@ -1,7 +1,7 @@
 using System;
 
-//Esta es una clase estática la cual le ponemos los valores por defecto e inmodificables del Admin, el cual es
-//un ApplicationUser que puede ver la página de los usuarios y los roles disponibles.
+// Esta es una clase estática la cual le ponemos los valores por defecto e inmodificables del Admin, el cual es
+// un ApplicationUser que puede ver la página de los usuarios y los roles disponibles.
 namespace Ignis.Areas.Identity.Data
 {
     public static class IdentityData
