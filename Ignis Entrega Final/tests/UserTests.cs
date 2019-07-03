@@ -4,7 +4,7 @@ using Ignis.Models;
 using Ignis.Areas.Identity.Data;
 using Microsoft.Extensions.Identity;
 
-namespace Ignis.Areas.Identity.Data
+namespace Ignis.Tests
 {
     public class UserTests
     {
