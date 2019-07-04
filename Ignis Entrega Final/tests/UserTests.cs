@@ -3,6 +3,18 @@ using Xunit;
 using Ignis.Models;
 using Ignis.Areas.Identity.Data;
 using Microsoft.Extensions.Identity;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.EntityFrameworkCore;
+using Ignis.Pages_AdminContracts;
 
 namespace Ignis.Tests
 {
@@ -37,7 +49,7 @@ namespace Ignis.Tests
         }
 
         [Fact]
-        //Se verifica la creacion de un Technician
+        // Se verifica la creacion de un Technician
         public void TestTechnician()
         {
             Technician tec1 = new Technician();
