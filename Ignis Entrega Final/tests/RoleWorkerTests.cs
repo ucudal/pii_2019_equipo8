@@ -3,6 +3,18 @@ using Xunit;
 using Ignis.Models;
 using Ignis.Areas.Identity.Data;
 using Microsoft.Extensions;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.EntityFrameworkCore;
+using Ignis.Pages.AssignRoles;
 
 namespace Ignis.Tests
 {
@@ -20,6 +32,5 @@ namespace Ignis.Tests
             string expected = "1111 Avanzado Sonidista";
             Assert.Equal(expected, actual);
         }
-
     }   
 }

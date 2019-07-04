@@ -39,7 +39,6 @@ namespace Ignis.Pages_AdminContracts
         {
             // Busco al Admin en la base de datos
             Admin = _context.Admin.FirstOrDefault(m => m.Role == IdentityData.AdminRoleName);
-
             // Aca busco si en la base de datos ya hay un contrato con el mismo técnico.
             // Si lo hay se lanza la excepción.
             Contract contract = _context.Contract

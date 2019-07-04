@@ -42,5 +42,85 @@ namespace Ignis.Areas.Identity.Data
             public DbSet<Contract> Contract { get; set; }
             public DbSet<RoleWorker> RoleWorker { get; set; }
 
+        // Definimos estos métodos para poder realizar los tests
+        public void Initialize()
+        {
+            this.GetUsers();
+            this.GetRoles();
+            SaveChanges();
+        }
+        public void GetUsers()
+        {
+            this.Clients.AddRange(
+                new Client 
+                {
+                    Id = "1",
+                    Name = "Marcos",
+                    Email = "marcos@gmail.com",
+                    UserName = "marcos@gmail.com"
+                }
+            );
+            this.Technicians.AddRange(
+                new Technician
+                {
+                    Id = "2",
+                    Name = "Gaston",
+                    Email = "gaston@gmail.com",
+                    UserName = "gaston@gmail.com",
+                    Available = true,
+                    PasswordHash = "q",
+                    PhoneNumber = "1",
+                    NormalizedEmail = "gaston@gmail.com",
+                    NormalizedUserName = "gaston@gmail.com",
+                    SecurityStamp = "23",
+                    LockoutEnd = DateTimeOffset.Now,
+                    Response = "",
+                    Role = "Tecnico"
+                }
+            );
+            this.Admin.AddRange(
+                new Admin
+                {
+                    Name = IdentityData.AdminName,
+                    UserName = IdentityData.AdminUserName,
+                    Email = IdentityData.AdminMail,
+                    DOB = IdentityData.AdminDOB,
+                    Role = IdentityData.AdminRoleName,
+                    ListaFiltradaTechnicians = new List<Technician>()
+                }
+            );
+        }
+        public void GetRoles()
+        {
+            this.RoleWorker.AddRange(
+                new RoleWorker
+                {
+                    ID = 1,
+                    Title = "Camarografo",
+                    Level = Level.Basico
+                },
+
+                new RoleWorker
+                {
+                    ID = 2,
+                    Title = "Grabacion",
+                    Level = Level.Avanzado
+                },
+
+                new RoleWorker
+                {
+                    ID = 3,
+                    Title = "Sonidista",
+                    Level = Level.Basico
+                },
+                new RoleWorker
+                {
+                    ID = 4,
+                    Title = "Fotografo",
+                    Level = Level.Avanzado
+                }
+            );
+        }
+
     }
 }
