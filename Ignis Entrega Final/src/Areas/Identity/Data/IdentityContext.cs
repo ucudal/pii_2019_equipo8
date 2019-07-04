@@ -47,6 +47,7 @@ namespace Ignis.Areas.Identity.Data
         {
             this.GetUsers();
             this.GetRoles();
+            this.GetContracts();
             SaveChanges();
         }
         public void GetUsers()
@@ -58,6 +59,13 @@ namespace Ignis.Areas.Identity.Data
                     Name = "Marcos",
                     Email = "marcos@gmail.com",
                     UserName = "marcos@gmail.com"
+                },
+                new Client
+                {
+                    Id = "4",
+                    Name = "Nicolas",
+                    Email = "nicolas@gmail.com",
+                    UserName = "nicolas@gmail.com"
                 }
             );
             this.Technicians.AddRange(
@@ -76,6 +84,13 @@ namespace Ignis.Areas.Identity.Data
                     LockoutEnd = DateTimeOffset.Now,
                     Response = "",
                     Role = "Tecnico"
+                },
+                new Technician
+                {
+                    Id = "3",
+                    Name = "Mateo",
+                    Email = "mateo@gmail.com",
+                    UserName = "mateo@gmail.com",
                 }
             );
             this.Admin.AddRange(
@@ -121,6 +136,16 @@ namespace Ignis.Areas.Identity.Data
                 }
             );
         }
-
+        public void GetContracts()
+        {
+            this.Contract.AddRange(
+                new ContractByDay
+                {
+                    Time = 8,
+                    ClientId = "4",
+                    TechnicianId = "3"
+                }
+            );
+        }
     }
 }

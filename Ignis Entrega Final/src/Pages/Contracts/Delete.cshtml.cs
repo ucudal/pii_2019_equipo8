@@ -63,7 +63,6 @@ namespace Ignis.Pages_Contracts
 
             Contract = await _context.Contract.Include(m => m.Technician)
             .FirstOrDefaultAsync(m => (m.ClientId == Contract.ClientId & m.TechnicianId == Contract.TechnicianId));
-
             // Para que el AverageRanking del tecnico quede actualizado, le mando un mensaje
             // al tecnico para que recalcule el ranking.
             // Si el controlador tuviera la responsabilidad de cambiar el AverageRanking,
