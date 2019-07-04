@@ -21,6 +21,7 @@ namespace Ignis.Tests
     public class ContractTests
     {
         [Fact]
+        // Se verifica la creación de un contrato por día
         public async Task Creation_of_contract_by_day()
         {
             // Creo la base de datos "falsa" para iniciar el test
@@ -47,6 +48,7 @@ namespace Ignis.Tests
         }
 
         [Fact]
+        // Se verifica la creación de un contrato por hora
         public async Task Creation_of_contract_by_Hour()
         {
             // Creo la base de datos "falsa" para iniciar el test. Y uso Utilities
@@ -74,6 +76,7 @@ namespace Ignis.Tests
             }
         }
         [Fact]
+        // Se verifica que se agregue un nuevo contrato al usuario
         public async Task Contract_was_added_to_User()
         {
             // Creo la base de datos "falsa" para iniciar el test. Y uso Utilities
