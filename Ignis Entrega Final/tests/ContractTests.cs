@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Ignis.Pages_AdminContracts;
+using Ignis.Pages_Contracts;
 
 namespace Ignis.Tests
 {
@@ -30,20 +31,21 @@ namespace Ignis.Tests
                 // Obtengo los objetos que voy a testear
                 db.Initialize();
 
-                ContractByDay expectedContract = new ContractByDay 
+                ContractByDay contract = new ContractByDay 
                 {
                     Time = 3,
                     ClientId = "1",
                     TechnicianId = "2"
                 };
-                CreateByDayModel createByDayModel = new CreateByDayModel(db);
-                createByDayModel.Contract = expectedContract;
+                Ignis.Pages_AdminContracts.CreateByDayModel createByDayModel = 
+                new Ignis.Pages_AdminContracts.CreateByDayModel(db);
+                createByDayModel.Contract = contract;
 
                 await createByDayModel.OnPostAsync();
 
                 Contract actualContract = await db.Contract.FindAsync("1","2");
 
-                Assert.Equal(expectedContract, actualContract);
+                Assert.Equal(contract, actualContract);
             }
         }
 
@@ -59,20 +61,21 @@ namespace Ignis.Tests
                 db.Initialize();
 
                 // Creo el contrato que voy a guardar en la base de datos
-                ContractByHour expectedContract = new ContractByHour 
+                ContractByHour contract = new ContractByHour 
                 {
                     Time = 8,
                     ClientId = "1",
                     TechnicianId = "2"
                 };
-                CreateByHourModel createByDayModel = new CreateByHourModel(db);
-                createByDayModel.Contract = expectedContract;
+                Ignis.Pages_AdminContracts.CreateByHourModel createByDayModel = 
+                new Ignis.Pages_AdminContracts.CreateByHourModel(db);
+                createByDayModel.Contract = contract;
 
                 await createByDayModel.OnPostAsync();
 
                 Contract actualContract = await db.Contract.FindAsync("1","2");
 
-                Assert.Equal(expectedContract, actualContract);
+                Assert.Equal(contract, actualContract);
             }
         }
         [Fact]
@@ -87,7 +90,7 @@ namespace Ignis.Tests
                 db.Initialize();
 
                 // Creo el contrato que voy a guardar en la base de datos
-                ContractByHour expectedContract = new ContractByHour 
+                ContractByHour contract = new ContractByHour 
                 {
                     Time = 8,
                     ClientId = "1",
@@ -97,8 +100,9 @@ namespace Ignis.Tests
                 // Si le agrego un contrato al técnico debe tener uno más
                 int expectedContractList = technician.Contracts.Count + 1;
 
-                CreateByHourModel createByDayModel = new CreateByHourModel(db);
-                createByDayModel.Contract = expectedContract;
+                Ignis.Pages_AdminContracts.CreateByHourModel createByDayModel = 
+                new Ignis.Pages_AdminContracts.CreateByHourModel(db);
+                createByDayModel.Contract = contract;
 
                 await createByDayModel.OnPostAsync();
 
@@ -106,6 +110,34 @@ namespace Ignis.Tests
                 int actualContractList = actualContract.Technician.Contracts.Count;
 
                 Assert.Equal(expectedContractList, actualContractList);
+            }
+        }
+        [Fact]
+        public async Task Delete_Contract()
+        {
+            // Creo la base de datos "falsa" para iniciar el test. Y uso Utilities
+            // para que se borre luego de finalizado el test   
+            using (var db = new IdentityContext(Utilities.TestDbContextOptions()))
+            {
+                db.Initialize();
+
+                Contract contract = await db.Contract.FindAsync("4", "3");
+
+                contract.Technician = await db.Technicians.FindAsync(contract.TechnicianId);
+                contract.Client = await db.Clients.FindAsync(contract.ClientId);
+
+                Ignis.Pages_Contracts.DeleteModel deleteModel = 
+                new Ignis.Pages_Contracts.DeleteModel(db);
+
+                Feedback feedback = new Feedback { Comment = "Buen Trabajo", Rating = 10 };
+
+                deleteModel.Contract = contract;
+                deleteModel.Feedback = feedback;
+
+                await deleteModel.OnPostAsync();
+
+                Assert.True(!db.Contract.Contains(contract));
+
             }
         }
     }
