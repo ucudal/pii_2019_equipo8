@@ -30,7 +30,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            <a style="display:none;" class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
                         
                             @if (User.IsInRole(IdentityData.AdminRoleName))
@@ -48,7 +48,7 @@
                                     <a class="nav-link text-dark" asp-area="" asp-page="/Consults/Index">Consults</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/AssignRoles/Index">TechnicianList</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/AssignRoles/Index">Technicians</a>
                                 </li>
                             }
                             else

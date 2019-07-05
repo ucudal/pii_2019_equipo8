@@ -113,6 +113,7 @@ namespace Ignis.Tests
             }
         }
         [Fact]
+        // Se verifica que se elimine un contrato
         public async Task Delete_Contract()
         {
             // Creo la base de datos "falsa" para iniciar el test. Y uso Utilities
