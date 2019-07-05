@@ -21,7 +21,7 @@ namespace Ignis.Tests
     public class RoleWorkerTests
     {
         [Fact]
-        //Se verifica la creacion de un RoleWorker
+        // Se verifica la creacion de un RoleWorker
         public void TestRoleWorker()
         {
             RoleWorker rw = new RoleWorker();

@@ -21,7 +21,7 @@ namespace Ignis.Tests
     public class UserTests
     {
         [Fact]
-        //Se verifica la creacion de un ApplicationUser
+        // Se verifica la creacion de un ApplicationUser
         public void TestApplicationUser()
         {
             ApplicationUser appUser = new ApplicationUser();
@@ -35,7 +35,7 @@ namespace Ignis.Tests
         }
 
         [Fact]
-        //Se verifica la creacion de un Client
+        // Se verifica la creacion de un Client
         public void TestClient()
         {
             Client client1 = new Client();

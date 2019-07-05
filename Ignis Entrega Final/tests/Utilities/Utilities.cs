@@ -10,6 +10,7 @@ using Ignis.Areas.Identity.Data;
 
 namespace Ignis.Tests
 {
+    // Esta clase la agregamos para que borre la base de datos luego de correr los tests
     public static class Utilities
     {
         #region snippet1
